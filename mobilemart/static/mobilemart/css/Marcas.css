@@ -1,0 +1,32 @@
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-6 {
+        width: 100%; /* Opcional: hacer que los elementos ocupen todo el ancho de la fila */
+    }
+}
+
+/* Estilos para pantallas medianas/semi grandes */
+@media (min-width: 768px) and (max-width: 1200px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-6 {
+        width: 50%; /* Dos elementos por fila */
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1200px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-6 {
+        width: 25%; /* Cuatro elementos por fila */
+    }
+}

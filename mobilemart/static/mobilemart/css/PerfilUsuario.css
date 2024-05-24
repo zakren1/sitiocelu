@@ -1,0 +1,8 @@
+.readonly-input {
+    opacity: 0.5; /* Opacidad para que parezcan desactivados */
+    cursor: not-allowed; /* Cursor no permitido */
+}
+
+.readonly-label {
+    color: #6c757d; /* Color de texto opaco */
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileMart</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Main.css">
+    <link rel="stylesheet" href="../css/Producto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<!--NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="../img/logotienda.png" alt="logotienda" width="40" height="30"
+                class="d-inline-block align-text-top">
+            MobileMart
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Marcas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../html/iphone.html">Apple</a></li>
+                        <li><a class="dropdown-item" href="../html/samsung.html">Samsung</a></li>
+                        <li><a class="dropdown-item" href="../html/xiaomi.html">Xiaomi</a></li>
+                    </ul>
+                </li>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/editarproducto.html">Administracion</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <!-- icono carro -->
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/carrito.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-cart" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                    </a>
+                </li>
+
+                <!-- icono personacirculo -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../html/perfilusuario.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../html/pedidosuser.html">Mis pedidos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../html/InicioSesion.html">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN NAVBAR-->
+
+    <!--PRODUCTO-->
+    <section id="product-page">
+        <div class="product-details">
+            <!--Imagen-->
+            <div class="product-img">
+                <img src="../img/a35.jpg" />
+            </div>
+            <!--Texto-->
+            <div class="product-text">
+                <!--Detalles-->
+                <span class="product-category">Samsung</span>
+                <h3>Samsung Galaxy A35</h3>
+                <span class="product-price">$370.000</span>
+                <h4 style="margin-top: 20px;">Especificaciones</h4>
+                <p>Pantalla: Super AMOLED de 6.4 pulgadas
+                    <br />
+                    Procesador: Exynos 850 / Snapdragon 450
+                    <br />
+                    Memoria: RAM de 4 GB, almacenamiento base de 128 GB
+                    <br />
+                    Cámara: Sistema de cámara triple con sensor principal de 48 MP
+                    <br />
+                    Batería: Capacidad de larga duración con carga rápida
+                    <br />
+                    Conectividad: 4G LTE, Wi-Fi 5, Bluetooth 5.0
+                    <br />
+                    Diseño: Elegante de plástico con acabado brillante
+                    <br />
+                    Sistema Operativo: Android 11 con One UI 3.1
+                </p>
+                <!--size-->
+                <div class="product-color-container">
+                    <strong>Seleccione color:</strong>
+                    <div class="product-color">
+                        <!--xl-->
+                        <input type="checkbox" class="c-checkbox" id="c-black">
+                        <label for="c-black" class="c-label">Negro</label>
+                        <!--Small-->
+                        <input type="checkbox" class="c-checkbox" id="c-white">
+                        <label for="c-white" class="c-label">Blanco</label>
+
+                    </div>
+                </div>
+
+                <!--btn-->
+                <div class="product-button">
+                    <a href="../html/carrito.html" class="btn btn-primary">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comments-section" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Comentarios</h2>
+            <!-- Mostrar comentarios -->
+            <div id="comments-list"></div>
+            <!-- Nombre de usuario -->
+            <div id="username-display" class="mb-3"></div>
+            <!-- Formulario de comentarios -->
+            <form id="comment-form">
+                <div class="mb-3">
+                    <label for="comment-message" class="form-label">Mensaje:</label>
+                    <textarea class="form-control" id="comment-message" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar comentario</button>
+            </form>
+        </div>
+    </section>
+
+    <!--==Jquery===========================-->
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script>
+        $('.c-checkbox').on('change', function () {
+            $('.c-checkbox').not(this).prop('checked', false);
+        });
+    </script>
+    <!--FIN PRODUCTO-->
+
+    <!--FOOTER-->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-uppercase text-decoration-none brand text-white" href="index.html">MobileMart</a>
+                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos
+                        celulares y dispositivos móviles.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="../html/index.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/iphone.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Apple
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/samsung.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Samsung
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/xiaomi.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Xiaomi
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/about.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Acerca de
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Contacto</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Paicaví 3280, Concepción, Bío Bío
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            MobileMart@gmail.com
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            +569 7768 3148
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Redes</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-opacity-50 fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-opacity-50 fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--FIN FOOTER-->
+</body>
+
+</html>

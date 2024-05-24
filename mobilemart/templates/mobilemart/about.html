@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileMart</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<!--NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="../img/logotienda.png" alt="logotienda" width="40" height="30"
+                class="d-inline-block align-text-top">
+            MobileMart
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Marcas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../html/iphone.html">Apple</a></li>
+                        <li><a class="dropdown-item" href="../html/samsung.html">Samsung</a></li>
+                        <li><a class="dropdown-item" href="../html/xiaomi.html">Xiaomi</a></li>
+                    </ul>
+                </li>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/editarproducto.html">Administracion</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <!-- icono carro -->
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/carrito.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-cart" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                    </a>
+                </li>
+
+                <!-- icono personacirculo -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="../html/perfilusuario.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../html/pedidosuser.html">Mis pedidos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../html/InicioSesion.html">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN NAVBAR-->
+
+    <div class="container" style="margin-bottom: 30px;">
+        <h1 class="border-bottom" style="margin-top: 30px;">¿Quiénes somos?</h1>
+        <h2 class="border-bottom" style="margin-top: 20px;">MobileMart</h2>
+        <p>MobileMart es una tienda en línea especializada en la venta de teléfonos celulares y dispositivos móviles.
+            Fundada en 2024, nuestra empresa se ha comprometido a brindar una experiencia de compra conveniente y
+            segura para aquellos que buscan adquirir un nuevo teléfono inteligente.</p>
+        <p>Con sede en Paicavi 3280, nuestro equipo está formado por entusiastas de la tecnología apasionados por
+            ofrecer productos de primera calidad y un servicio excepcional. Nos enorgullece mantenernos al tanto
+            de las últimas tendencias del mercado y trabajar con los principales fabricantes de teléfonos celulares
+            para garantizar que nuestros clientes tengan acceso a los últimos modelos y características innovadoras.</p>
+        <h2 class="border-bottom" style="margin-top: 30px;">Nuestros Productos</h2>
+        <p>En MobileMart, ofrecemos una amplia gama de teléfonos celulares de marcas líderes como Apple, Samsung y
+            Xiaomi.
+            Desde los últimos lanzamientos hasta modelos más asequibles, nuestra colección de dispositivos móviles está
+            diseñada para satisfacer una variedad de necesidades y presupuestos.</p>
+    </div>
+
+    <!--FOOTER-->
+    <footer class="bg-dark py-5">
+        <div class="container">
+            <div class="row text-white g-4">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-uppercase text-decoration-none brand text-white" href="index.html">MobileMart</a>
+                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos
+                        celulares y dispositivos móviles.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="my-3">
+                            <a href="../html/index.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Inicio
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/iphone.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Apple
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/samsung.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Samsung
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="../html/xiaomi.html" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Xiaomi
+                            </a>
+                        </li>
+                        <li class="my-3">
+                            <a href="#" class="text-white text-decoration-none text-opacity-50">
+                                <i class="fas fa-chevron-right me-1"></i> Acerca de
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Contacto</h5>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            Paicaví 3280, Concepción, Bío Bío
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="fw-light">
+                            MobileMart@gmail.com
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
+                        <span class="me-3">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <span class="fw-light">
+                            +569 7768 3148
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <h5 class="fw-light mb-3">Redes</h5>
+                    <div>
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-opacity-50 fs-4 me-4">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-opacity-50 fs-4 me-4">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--FIN FOOTER-->
+</body>
+
+</html>

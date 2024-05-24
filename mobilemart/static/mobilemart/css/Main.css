@@ -1,0 +1,127 @@
+/*CAROUSEL*/
+.carousel-item {
+    min-height: 400px;
+    max-height: 520px;
+}
+
+.carousel-item img {
+    min-height: 400px;
+    max-height: 520px;
+    width: auto;
+}
+
+.carousel-caption {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    z-index: 2;
+}
+
+.carousel-caption h5 {
+    font-size: 70px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 25px;
+}
+
+.carousel-caption p {
+    width: 60%;
+    margin: 10px auto;
+    font-size: 18px;
+}
+
+.carousel-inner::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+
+@media(max-width: 767px) {
+
+    .carousel-item {
+        min-height: 300px;
+    }
+
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .carousel-caption {
+        bottom: 30px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 50px;
+        margin-top: 0;
+    }
+
+    .carousel-caption p {
+        width: 100%;
+        font-size: 16px;
+    }
+}
+
+/*FOOTER*/
+footer{
+    margin-top: auto;
+}
+
+footer .brand{
+    font-family: var(--lg-font);
+    letter-spacing: 2px;
+}
+footer a{
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+footer a:hover{
+    color: var(--pink)!important;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-4 {
+        width: 100%; /* Opcional: hacer que los elementos ocupen todo el ancho de la fila */
+    }
+}
+
+/* Estilos para pantallas medianas/semi grandes */
+@media (min-width: 768px) and (max-width: 1200px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-4 {
+        width: 50%; /* Dos elementos por fila */
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1200px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .col-sm-4 {
+        width: 33.33%; /* Cuatro elementos por fila */
+    }
+}
