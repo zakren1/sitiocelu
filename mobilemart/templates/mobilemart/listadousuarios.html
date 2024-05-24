@@ -28,8 +28,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listadousuarios.html">Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Usuarios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="../html/listadousuarios.html">Editar usuarios</a></li>
+                            <li><a class="dropdown-item" href="../html/crearusuario.html">Crear usuarios</a></li>
+
+                        </ul>
                     </li>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -38,15 +46,17 @@
                                 Productos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../html/editarproducto.html">Editar Productos</a></li>
-                                <li><a class="dropdown-item" href="../html/agregarproducto.html">Agregar productos</a></li>
-   
+                                <li><a class="dropdown-item" href="../html/editarproducto.html">Editar Productos</a>
+                                </li>
+                                <li><a class="dropdown-item" href="../html/agregarproducto.html">Agregar productos</a>
+                                </li>
+
                             </ul>
                         </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listadopedidos.html">Pedidos</a>
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="listadopedidos.html">Pedidos</a>
+                        </li>
+                    </ul>
             </div>
         </div>
     </nav>
@@ -67,27 +77,27 @@
                         <td>Pepito123</td>
                         <td>pepito@gmail.com</td>
                         <td>
-                            <a href="detalleusuario.html">
-                                <button class="btn btn-dark">Ver</button>
-                            </a>
+                            <a href="detalleusuario.html"><button class="btn btn-dark">Editar</button></a>
+                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
+                            <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
                         </td> <!--boton pepito -->
                     </tr>
                     <tr>
                         <td>CrisMJ</td>
                         <td>crismj@gmail.com</td>
                         <td>
-                            <a href="detalleusuario.html">
-                                <button class="btn btn-dark">Ver</button>
-                            </a>
+                            <a href="detalleusuario.html"><button class="btn btn-dark">Editar</button></a>
+                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
+                            <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
                         </td> <!-- Botón para Crismj -->
                     </tr>
                     <tr>
                         <td>Jereklein</td>
                         <td>jereklein@gmail.com</td>
                         <td>
-                            <a href="detalleusuario.html">
-                                <button class="btn btn-dark">Ver</button>
-                            </a>
+                            <a href="detalleusuario.html"><button class="btn btn-dark">Editar</button></a>
+                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
+                            <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
                         </td> <!-- Botón para jereklein -->
                     </tr>
                 </tbody>
@@ -103,7 +113,8 @@
             <div class="row text-white g-4">
                 <div class="col-md-6 col-lg-3">
                     <a class="text-uppercase text-decoration-none brand text-white" href="index.html">MobileMart</a>
-                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos celulares y dispositivos móviles.</p>
+                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos
+                        celulares y dispositivos móviles.</p>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
