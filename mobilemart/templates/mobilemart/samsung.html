@@ -3,7 +3,9 @@
 
 {% block title %}Samsung{% endblock %}
 
-    <link rel="stylesheet" href="../css/Marcas.css">
+{% block links %}
+    <link rel="stylesheet" href=" {% static 'mobilemart/Css/Marcas.css' %} ">
+{% endblock links %}
 
     {% block contenido %}
 
@@ -13,7 +15,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S21">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S21.webp' %}" alt="S21">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S21 </h3>
                         <h5 class="card-text">Precio : $430.000</h5>
@@ -37,7 +39,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="galaxy z">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/z.jpg' %}" alt="galaxy z">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy Z</h3>
                         <h5 class="card-text">Precio : $1.330.000</h5>
@@ -50,7 +52,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S23">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S23.jpg' %}" alt="S23">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S23</h3>
                         <h5 class="card-text">Precio : $680.000</h5>
@@ -66,7 +68,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S22">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S22.jpg' %}" alt="S22">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S22</h3>
                         <h5 class="card-text">Precio : $530.000</h5>
@@ -78,7 +80,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="A55">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/A55.jpg' %}" alt="A55">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy A55</h3>
                         <h5 class="card-text">Precio : $440.000</h5>
@@ -90,7 +92,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="A35">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/A35.jpg' %}" alt="A35">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy A35</h3>
                         <h5 class="card-text">Precio : $370.000</h5>
@@ -103,7 +105,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S20">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S20.webp' %}" alt="S20">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S20</h3>
                         <h5 class="card-text">Precio : $360.000</h5>

@@ -17,10 +17,6 @@ def samsung(request):
 def xiaomi(request):
     return render(request, 'mobilemart/xiaomi.html')
 
-# Vista para la página de Administración
-def administracion(request):
-    return render(request, 'mobilemart/administracion.html')
-
 # Vista para la página del Carrito
 def carrito(request):
     return render(request, 'mobilemart/carrito.html')
@@ -34,7 +30,7 @@ def pedidosuser(request):
     return render(request, 'mobilemart/pedidosuser.html')
 
 # Vista para la página de Inicio de Sesión
-def InicioSesion(request):
+def iniciosesion(request):
     return render(request, 'mobilemart/InicioSesion.html')
 
 # Vista para la página Acerca de
@@ -43,7 +39,7 @@ def about(request):
 
 # Vista para la página detalle producto
 def detalle_producto(request):
-    return render(request, 'mobilemart/iphone15pro.html')
+    return render(request, 'mobilemart/pa-iphone15pro.html')
 
 # Vista para la página recuperar contraseña
 def recuperar_contrasena(request):
@@ -56,3 +52,40 @@ def registro_usuario(request):
 # Vista para la página detalle pedido usuario
 def detalle_pedido_usuario(request):
     return render(request, 'mobilemart/detallepedidouser.html')
+
+##### VISTAS DE ADMINISTRADOR #####
+
+# Vista para la página de Administración (editarproducto)
+def administracion(request):
+    return render(request, 'mobilemart/editarproducto.html')
+
+# Vista para la página agregar producto
+def agregarproducto(request):
+    return render(request, 'mobilemart/agregarproducto.html')
+
+# Vista para la página ventana edición (editar producto específico)
+def ventanaedicion(request):
+    return render(request, 'mobilemart/ventanaedicion.html')
+
+# Vista para la página crear usuario
+def crearusuario(request):
+    return render(request, 'mobilemart/crearusuario.html')
+
+# Vista para la página listado usuarios
+def listadousuarios(request):
+    return render(request, 'mobilemart/listadousuarios.html')
+
+# Vista para la página detalle usuario
+def detalleusuario(request):
+    return render(request, 'mobilemart/detalleusuario.html')
+
+# Vista para la página listado pedidos
+def listadopedidos(request):
+    return render(request, 'mobilemart/listadopedidos.html')
+
+# Vista para la página detalle pedido
+def detallepedido(request):
+    return render(request, 'mobilemart/detallepedido.html')
+
+
+

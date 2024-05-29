@@ -1,7 +1,9 @@
 
 from django.urls import include, path
 
-from .views import index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario, pedidosuser,InicioSesion,about,detalle_producto,recuperar_contrasena,registro_usuario,detalle_pedido_usuario
+from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario,
+pedidosuser, iniciosesion, about, detalle_producto, recuperar_contrasena, registro_usuario, detalle_pedido_usuario,
+agregarproducto, ventanaedicion, crearusuario, listadousuarios, detalleusuario, listadopedidos, detallepedido)
 
 urlpatterns = [
     path('',index,name='index'),
@@ -12,10 +14,17 @@ urlpatterns = [
     path('carrito/', carrito, name='carrito'),
     path('perfilusuario/', perfilusuario, name='perfilusuario'),
     path('pedidosuser/', pedidosuser, name='pedidosuser'),
-    path('InicioSesion/', InicioSesion, name='InicioSesion'),
+    path('iniciosesion/', iniciosesion, name='iniciosesion'),
     path('about/', about, name='about'),
     path('detalle_producto', detalle_producto, name='detalle_producto'),
     path('recuperarcontra/', recuperar_contrasena, name='recuperar_contrasena'),
     path('registro/', registro_usuario, name='registro_usuario'),
     path('detallepedidouser/', detalle_pedido_usuario, name='detalle_pedido_usuario'),
+    path('agregarproducto/', agregarproducto, name='agregarproducto'),
+    path('ventanaedicion/', ventanaedicion, name='ventanaedicion'),
+    path('crearusuario/', crearusuario, name='crearusuario'),
+    path('listadousuarios/', listadousuarios, name='listadousuarios'),
+    path('detalleusuarios/', detalleusuario, name='detalleusuario'),
+    path('listadopedidos/', listadopedidos, name='listadopedidos'),
+    path('detallepedido/', detallepedido, name='detallepedido'),
 ]

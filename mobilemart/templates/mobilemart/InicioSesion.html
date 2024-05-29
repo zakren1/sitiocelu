@@ -2,8 +2,12 @@
 {% load static %}
 
 {% block title %}Inicio Sesion{% endblock %}
+
+{% block links %}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{% static 'mobilemart/css/Login.css' %}">
+    <link rel="stylesheet" href="{% static 'mobilemart/css/Login.css' %}">    
+{% endblock links %}
+
 
     {% block contenido %}
     <div class="container-fluid flexbox-margin-auto " style="margin-bottom: 20px;">

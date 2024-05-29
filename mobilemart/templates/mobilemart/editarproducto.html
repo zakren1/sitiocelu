@@ -1,77 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'mobilemart/baseadmin.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MobileMart</title>
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/Main.css">
-    <link rel="stylesheet" href="../css/Marcas.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="../js/bootstrap.bundle.min.js"></script>
-</head>
 
-<body>
+    {% block title %}Administración{% endblock %}
 
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Panel de Administrador</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Usuarios
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="../html/listadousuarios.html">Editar usuarios</a></li>
-                            <li><a class="dropdown-item" href="../html/crearusuario.html">Crear usuarios</a></li>
+    {% block links %}
+        <link rel="stylesheet" href=" {% static 'mobilemart/Css/Marcas.css' %} ">
+    {% endblock links %}
+    
 
-                        </ul>
-                    </li>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Productos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../html/editarproducto.html">Editar Productos</a></li>
-                                <li><a class="dropdown-item" href="../html/agregarproducto.html">Agregar productos</a></li>
-   
-                            </ul>
-                        </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="listadopedidos.html">Pedidos</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
+
+
+
+
+    {% block contenido %}
     <div class="container" style="margin-bottom: 30px;">
         <h3 class="border-bottom " style="margin-top: 30px;">Productos</h3>
         <div class="row">
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone15pro.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone15pro.jpg' %}" alt="Iphone 15 Pro Max">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 15 Pro Max</h3>
                         <h5 class="card-text">Precio : $1.380.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -80,12 +35,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone15.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone15.jpg' %}" alt="Iphone 15">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 15</h3>
                         <h5 class="card-text">Precio : $930.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -94,12 +49,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone14pro.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone14pro.jpg' %}" alt="Iphone 14 Pro Max">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 14 Pro Max</h3>
                         <h5 class="card-text">Precio : $870.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -109,12 +64,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone14.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone14.jpg' %}" alt="Iphone 14">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 14</h3>
                         <h5 class="card-text">Precio : $770.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -127,12 +82,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone13.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone13.jpg' %}" alt="Iphone 13">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 13</h3>
                         <h5 class="card-text">Precio : $630.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
 
@@ -142,12 +97,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone12.png" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone12.png' %}" alt="Iphone 12">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 12</h3>
                         <h5 class="card-text">Precio : $580.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
 
@@ -157,12 +112,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphone11.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone11.jpg' %}" alt="Iphone 11">
                     <div class="card-body">
                         <h3 class="card-title">Iphone 11</h3>
                         <h5 class="card-text">Precio : $400.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -172,12 +127,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/iphonese.jpg" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/iphonese.jpg' %}" alt="Iphone SE">
                     <div class="card-body">
                         <h3 class="card-title">Iphone SE</h3>
                         <h5 class="card-text">Precio : $200.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -189,12 +144,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/s21.webp" alt="S21">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/s21.webp' %}" alt="S21">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S21 </h3>
                         <h5 class="card-text">Precio : $430.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -204,12 +159,12 @@
           
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/S24.jpg" alt="S24">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S24">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S24</h3>
                         <h5 class="card-text">Precio : $1.320.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -218,12 +173,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/z.jpg" alt="galaxy z">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/z.jpg' %}" alt="galaxy z">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy Z</h3>
                         <h5 class="card-text">Precio : $1.330.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -233,12 +188,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/S23.jpg" alt="S23">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S23.jpg' %}" alt="S23">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S23</h3>
                         <h5 class="card-text">Precio : $680.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -251,12 +206,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/S22.jpg" alt="S22">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/S22.jpg' %}" alt="S22">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S22</h3>
                         <h5 class="card-text">Precio : $530.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -265,12 +220,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/A55.jpg" alt="A55">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/A55.jpg' %}" alt="A55">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy A55</h3>
                         <h5 class="card-text">Precio : $440.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -279,12 +234,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/a35.jpg" alt="A35">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/a35.jpg' %}" alt="A35">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy A35</h3>
                         <h5 class="card-text">Precio : $370.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                         
@@ -295,12 +250,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/s20.webp" alt="S20">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/s20.webp' %}" alt="S20">
                     <div class="card-body">
                         <h3 class="card-title">Samsung Galaxy S20</h3>
                         <h5 class="card-text">Precio : $360.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -312,12 +267,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/13t.webp" alt="Redmi 13t">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/13t.webp' %}" alt="Redmi 13t">
                     <div class="card-body">
                         <h3 class="card-title">Xiaomi Redmi 13T </h3>
                         <h5 class="card-text">Precio : $560.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -326,12 +281,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/redmi13.webp" alt="Redmi 13">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/redmi13.webp' %}" alt="Redmi 13">
                     <div class="card-body">
                         <h3 class="card-title">Xiaomi Redmi 13 </h3>
                         <h5 class="card-text">Precio : $450.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -340,12 +295,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/pocof5.webp" alt="Poco f5">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/pocof5.webp' %}" alt="Poco f5">
                     <div class="card-body">
                         <h3 class="card-title">Xiaomi Poco F5</h3>
                         <h5 class="card-text">Precio : $500.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
 
@@ -356,12 +311,12 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="../img/pocox6.jpg" alt="Poco x6">
+                    <img class="card-img-top" src="{% static 'mobilemart/img/pocox6.jpg' %}" alt="Poco x6">
                     <div class="card-body">
                         <h3 class="card-title">Xiaomi Poco X6</h3>
                         <h5 class="card-text">Precio : $330.000</h5>
                         <div class="d-flex">
-                            <a href="../html/ventanaedicion.html" class="btn btn-primary mr-2">Editar</a>
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
                             <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
                         </div>
                     </div>
@@ -370,95 +325,4 @@
         </div>
 
     </div>
-      <!--FOOTER-->
-      <footer class = "bg-dark py-5">
-        <div class = "container">
-            <div class = "row text-white g-4">
-                <div class = "col-md-6 col-lg-3">
-                    <a class = "text-uppercase text-decoration-none brand text-white" href = "index.html">MobileMart</a>
-                    <p class = "text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos celulares y dispositivos móviles.</p>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light">Links</h5>
-                    <ul class = "list-unstyled">
-                        <li class = "my-3">
-                            <a href = "../html/index.html" class = "text-white text-decoration-none text-opacity-50">
-                                <i class = "fas fa-chevron-right me-1"></i> Inicio
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "../html/iphone.html" class = "text-white text-decoration-none text-opacity-50">
-                                <i class = "fas fa-chevron-right me-1"></i> Apple
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "../html/samsung.html" class = "text-white text-decoration-none text-opacity-50">
-                                <i class = "fas fa-chevron-right me-1"></i> Samsung
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "../html/xiaomi.html" class = "text-white text-decoration-none text-opacity-50">
-                                <i class = "fas fa-chevron-right me-1"></i> Xiaomi
-                            </a>
-                        </li>
-                        <li class = "my-3">
-                            <a href = "../html/about.html" class = "text-white text-decoration-none text-opacity-50">
-                                <i class = "fas fa-chevron-right me-1"></i> Acerca de
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light mb-3">Contacto</h5>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
-                        <span class = "me-3">
-                            <i class = "fas fa-map-marked-alt"></i>
-                        </span>
-                        <span class = "fw-light">
-                            Paicaví 3280, Concepción, Bío Bío
-                        </span>
-                    </div>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
-                        <span class = "me-3">
-                            <i class = "fas fa-envelope"></i>
-                        </span>
-                        <span class = "fw-light">
-                            MobileMart@gmail.com
-                        </span>
-                    </div>
-                    <div class = "d-flex justify-content-start align-items-start my-2 text-white text-opacity-50">
-                        <span class = "me-3">
-                            <i class = "fas fa-phone-alt"></i>
-                        </span>
-                        <span class = "fw-light">
-                            +569 7768 3148
-                        </span>
-                    </div>
-                </div>
-
-                <div class = "col-md-6 col-lg-3">
-                    <h5 class = "fw-light mb-3">Redes</h5>
-                    <div>
-                        <ul class = "list-unstyled d-flex">
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-opacity-50 fs-4 me-4">
-                                    <i class = "fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href = "#" class = "text-white text-decoration-none text-opacity-50 fs-4 me-4">
-                                    <i class = "fab fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--FIN FOOTER-->
-
-</body>
-</html>
+    {% endblock contenido %}
