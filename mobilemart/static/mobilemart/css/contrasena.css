@@ -1,24 +1,26 @@
 .cuadro {
-    max-width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px !important;
+    margin: 100px auto !important;
+    background-color: #fff !important;
+    padding: 20px !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 .recuperarcontra {
-    max-width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    padding: 20px;
+    max-width: 400px !important;
+    margin: 100px auto !important;
+    background-color: #fff !important;
+    padding: 20px !important;
 }
 
 h2 {
     margin-top: 0;
     text-align: center;
 }
-input[type="email"], input[type="submit"] {
+
+input[type="email"],
+input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -26,11 +28,13 @@ input[type="email"], input[type="submit"] {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
 }
+
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
