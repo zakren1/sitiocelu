@@ -1,5 +1,6 @@
-
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario,
 pedidosuser, iniciosesion, about, detalle_producto, recuperar_contrasena, registro_usuario, detalle_pedido_usuario,
@@ -28,3 +29,6 @@ urlpatterns = [
     path('listadopedidos/', listadopedidos, name='listadopedidos'),
     path('detallepedido/', detallepedido, name='detallepedido'),
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
