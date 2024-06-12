@@ -20,39 +20,27 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>Rut</th>
+                        <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Email</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for u in usuarios  %}
                     <tr>
-                        <td>Pepito123</td>
-                        <td>pepito@gmail.com</td>
+                        <td>{{u.rut}}</td>
+                        <td>{{u.nombre}} {{u.apellido}}</td>
+                        <td>{{u.username}}</td>
+                        <td>{{u.correo}}</td>
                         <td>
                             <a href="{% url 'detalleusuario' %}"><button class="btn btn-dark">Editar</button></a>
                             <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
                             <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
-                        </td> <!--boton pepito -->
+                        </td>
                     </tr>
-                    <tr>
-                        <td>CrisMJ</td>
-                        <td>crismj@gmail.com</td>
-                        <td>
-                            <a href="{% url 'detalleusuario' %}"><button class="btn btn-dark">Editar</button></a>
-                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
-                            <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
-                        </td> <!-- Botón para Crismj -->
-                    </tr>
-                    <tr>
-                        <td>Jereklein</td>
-                        <td>jereklein@gmail.com</td>
-                        <td>
-                            <a href="{% url 'detalleusuario' %}"><button class="btn btn-dark">Editar</button></a>
-                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
-                            <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
-                        </td> <!-- Botón para jereklein -->
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

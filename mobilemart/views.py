@@ -2,21 +2,27 @@ from django.shortcuts import render
 from .models import Usuario, Celular
 
 # Create your views here.
+
 def index(request):
     return render(request,'mobilemart/index.html')
 
-
-# Vista para la página de Apple
-def iphone(request):
-    return render(request, 'mobilemart/iphone.html')
-
 # Vista para la página de Samsung
 def samsung(request):
-    return render(request, 'mobilemart/samsung.html')
+    celulares = Celular.objects.filter(marca="Samsung")
+    datos = {"celulares": celulares}
+    return render(request, 'mobilemart/samsung.html', datos)
 
 # Vista para la página de Xiaomi
 def xiaomi(request):
-    return render(request, 'mobilemart/xiaomi.html')
+    celulares = Celular.objects.filter(marca="Xiaomi")
+    datos = {"celulares": celulares}
+    return render(request, 'mobilemart/xiaomi.html', datos)
+
+# Vista para la página de Apple
+def iphone(request):
+    celulares = Celular.objects.filter(marca="Apple")
+    datos = {"celulares": celulares}
+    return render(request, 'mobilemart/iphone.html', datos)
 
 # Vista para la página del Carrito
 def carrito(request):
@@ -58,7 +64,13 @@ def detalle_pedido_usuario(request):
 
 # Vista para la página de Administración (editarproducto)
 def administracion(request):
-    return render(request, 'mobilemart/editarproducto.html')
+
+    celulares=Celular.objects.all() #queryset
+    
+    datos={
+        "celulares":celulares
+    }
+    return render(request, 'mobilemart/editarproducto.html', datos)
 
 # Vista para la página agregar producto
 def agregarproducto(request):
@@ -74,7 +86,12 @@ def crearusuario(request):
 
 # Vista para la página listado usuarios
 def listadousuarios(request):
-    return render(request, 'mobilemart/listadousuarios.html')
+    usuarios=Usuario.objects.all()
+    
+    datos={
+        "usuarios":usuarios
+    }
+    return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página detalle usuario
 def detalleusuario(request):

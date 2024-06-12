@@ -1,5 +1,5 @@
 MARCA={
-    ("APPLE", "Apple"),
-    ("SAMSUNG", "Samsung"),
-    ("XIAOMI", "Xiaomi"),
+    ("Apple", "Apple"),
+    ("Samsung", "Samsung"),
+    ("Xiaomi", "Xiaomi"),
 }

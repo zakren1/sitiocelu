@@ -6,6 +6,8 @@ from .enumeraciones import *
 # Create your models here.
 class Usuario(models.Model):
     rut=models.CharField(max_length=10, primary_key=True)
+    nombre=models.CharField(max_length=50, null=False)
+    apellido=models.CharField(max_length=50, null=False)
     username=models.CharField(max_length=50, null=False)
     correo=models.EmailField(verbose_name="E-mail")
     password=models.CharField(max_length=50, null=False)
@@ -18,7 +20,7 @@ class Celular(models.Model):
     modelo=models.CharField(max_length=50, null=False)
     marca=models.CharField(max_length=20, null=False, choices=MARCA)
     precio=models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    especificaciones=models.CharField(max_length=300, null=False)
+    especificaciones=models.CharField(max_length=500, null=False)
     foto=models.ImageField(upload_to='celulares', null=True)
 
     def __str__(self):

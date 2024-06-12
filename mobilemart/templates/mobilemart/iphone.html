@@ -1,6 +1,6 @@
 {% extends 'mobilemart/base.html' %}
 {% load static %}
-
+{% load humanize %}
 
     {% block title %}Apple{% endblock %}
 
@@ -19,109 +19,22 @@
     <div class="container" style="margin-bottom: 30px;">
         <h3 class="border-bottom " style="margin-top: 30px;">Productos de Apple</h3>
         <div class="row">
-
+            {% for c in celulares %}
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone15pro.jpg' %}" alt="Iphone 15 Pro Max">
+                    <img class="card-img-top" src="{{c.foto.url}}" alt="{{c.modelo}}">
                     <div class="card-body">
-                        <h3 class="card-title">Iphone 15 Pro Max</h3>
-                        <h5 class="card-text">Precio : $1.380.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
+                        <h3 class="card-title">{{c.modelo}}</h3>
+                        <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>
+                        <div class="d-flex">
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
+                            <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone15.jpg' %}" alt="Iphone 15">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 15</h3>
-                        <h5 class="card-text">Precio : $930.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone14pro.jpg' %}" alt="Iphone 14">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 14 Pro Max</h3>
-                        <h5 class="card-text">Precio : $870.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone14.jpg' %}" alt="Iphone 14">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 14</h3>
-                        <h5 class="card-text">Precio : $770.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %} 
         </div>
-
-
-        <div class="row">
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone13.jpg' %}" alt="Iphone 13">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 13</h3>
-                        <h5 class="card-text">Precio : $630.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone12.png' %}" alt="Iphone 12">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 12</h3>
-                        <h5 class="card-text">Precio : $580.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphone11.jpg' %}" alt="Iphone 11">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone 11</h3>
-                        <h5 class="card-text">Precio : $400.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/iphonese.jpg' %}" alt="Iphone SE">
-                    <div class="card-body">
-                        <h3 class="card-title">Iphone SE</h3>
-                        <h5 class="card-text">Precio : $200.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+    
     {% endblock contenido %}

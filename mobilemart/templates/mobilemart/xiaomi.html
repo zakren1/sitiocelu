@@ -1,7 +1,6 @@
 {% extends 'mobilemart/base.html' %}
-
 {% load static %}
-
+{% load humanize %}
 
 {% block title %}Xiaomi{% endblock %}
 
@@ -12,59 +11,24 @@
     {% block contenido %}
 
     <div class="container" style="margin-bottom: 30px;">
-        <h3 class="border-bottom" style="margin-top: 30px;">Productos de Xiaomi</h3>
+        <h3 class="border-bottom " style="margin-top: 30px;">Productos de Xiaomi</h3>
         <div class="row">
-
+            {% for c in celulares %}
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/13t.webp' %}" alt="Redmi 13t">
+                    <img class="card-img-top" src="{{c.foto.url}}" alt="{{c.modelo}}">
                     <div class="card-body">
-                        <h3 class="card-title">Xiaomi Redmi 13T </h3>
-                        <h5 class="card-text">Precio : $560.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
+                        <h3 class="card-title">{{c.modelo}}</h3>
+                        <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>
+                        <div class="d-flex">
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
+                            <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/redmi13.webp' %}" alt="Redmi 13">
-                    <div class="card-body">
-                        <h3 class="card-title">Xiaomi Redmi 13 </h3>
-                        <h5 class="card-text">Precio : $450.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/pocof5.webp' %}" alt="Poco f5">
-                    <div class="card-body">
-                        <h3 class="card-title">Xiaomi Poco F5</h3>
-                        <h5 class="card-text">Precio : $500.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/pocox6.jpg' %}" alt="Poco x6">
-                    <div class="card-body">
-                        <h3 class="card-title">Xiaomi Poco X6</h3>
-                        <h5 class="card-text">Precio : $330.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %} 
         </div>
-
     </div>
 
     {% endblock contenido %}

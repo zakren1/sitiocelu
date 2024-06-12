@@ -3,7 +3,7 @@ from .models import Usuario
 from .models import Celular
 
 class AdmUsuario(admin.ModelAdmin):
-    list_display= ['rut', 'username', 'correo']
+    list_display= ['rut', 'nombre', 'apellido', 'username', 'correo']
     #list_editable= ['rut', 'username', 'correo']
 
 class AdmCelular(admin.ModelAdmin):

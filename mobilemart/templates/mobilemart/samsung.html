@@ -1,5 +1,6 @@
 {% extends 'mobilemart/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Samsung{% endblock %}
 
@@ -10,111 +11,24 @@
     {% block contenido %}
 
     <div class="container" style="margin-bottom: 30px;">
-        <h3 class="border-bottom" style="margin-top: 30px;">Productos de Samsung</h3>
+        <h3 class="border-bottom " style="margin-top: 30px;">Productos de Samsung</h3>
         <div class="row">
-
+            {% for c in celulares %}
             <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                 <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S21.webp' %}" alt="S21">
+                    <img class="card-img-top" src="{{c.foto.url}}" alt="{{c.modelo}}">
                     <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy S21 </h3>
-                        <h5 class="card-text">Precio : $430.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
+                        <h3 class="card-title">{{c.modelo}}</h3>
+                        <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>
+                        <div class="d-flex">
+                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
+                            <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S24.jpg' %}" alt="S24">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy S24</h3>
-                        <h5 class="card-text">Precio : $1.320.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/z.jpg' %}" alt="galaxy z">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy Z</h3>
-                        <h5 class="card-text">Precio : $1.330.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S23.jpg' %}" alt="S23">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy S23</h3>
-                        <h5 class="card-text">Precio : $680.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %} 
         </div>
-
-
-        <div class="row">
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S22.jpg' %}" alt="S22">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy S22</h3>
-                        <h5 class="card-text">Precio : $530.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/A55.jpg' %}" alt="A55">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy A55</h3>
-                        <h5 class="card-text">Precio : $440.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/A35.jpg' %}" alt="A35">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy A35</h3>
-                        <h5 class="card-text">Precio : $370.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{% static 'mobilemart/img/S20.webp' %}" alt="S20">
-                    <div class="card-body">
-                        <h3 class="card-title">Samsung Galaxy S20</h3>
-                        <h5 class="card-text">Precio : $360.000</h5>
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
     {% endblock contenido %}

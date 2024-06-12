@@ -12,6 +12,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Validacion del nombre
+    const nombreInput = document.getElementById('nombre');
+    nombreInput.addEventListener('input', function () {
+        if (nombreInput.value.length < 2) {
+            nombreInput.setCustomValidity('El nombre debe tener al menos 2 caracteres.');
+        } else {
+            nombreInput.setCustomValidity('');
+        }
+    });
+
+    // Validacion del apellido
+    const apellidoInput = document.getElementById('apellido');
+    apellidoInput.addEventListener('input', function () {
+        if (apellidoInput.value.length < 2) {
+            apellidoInput.setCustomValidity('El nombre de usuario debe tener al menos 2 caracteres.');
+        } else {
+            apellidoInput.setCustomValidity('');
+        }
+    });
+
     // Validacion del usuario
     const usernameInput = document.getElementById('username');
     usernameInput.addEventListener('input', function () {
