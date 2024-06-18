@@ -1,5 +1,6 @@
 {% extends 'mobilemart/baseadmin.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
     {% block title %}Agregar producto{% endblock %}
@@ -16,64 +17,13 @@
     {% block contenido %}
     <div class="container">
         <h1 class="border-bottom mt-5">Agregar Nuevo Producto</h1>
-        <form id="agregarproducto-form" class="mt-4" action="{% url 'administracion' %}" method="post">
-            <div class="mb-3">
-                <label for="product-name" class="form-label">Nombre del Producto:</label>
-                <input type="text" id="product-name" name="product-name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="product-brand" class="form-label">Marca:</label>
-                <select id="product-brand" name="product-brand" class="form-select" required>
-                    <option value="" disabled selected>Selecciona una marca</option>
-                    <option value="Apple">Apple</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Xiaomi">Xiaomi</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="product-price" class="form-label">Precio:</label>
-                <div class="input-group">
-                    <span class="input-group-text">$</span>
-                    <input type="number" id="product-price" name="product-price" step="0.01" class="form-control"
-                        required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="product-specifications" class="form-label">Especificaciones:</label>
-                <textarea id="product-specifications" name="product-specifications" class="form-control" rows="4"
-                    required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="product-image" class="form-label">Imagen del Producto:</label>
-                <input type="file" id="product-image" name="product-image" class="form-control" required>
-            </div>
+        <form id="agregarproducto-form" class="mt-4" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form| crispy}}
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Agregar Producto</button>
             </div>
         </form>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="specificationsModal" tabindex="-1" aria-labelledby="specificationsModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="specificationsModalLabel">Especificaciones del Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="product-specs" class="form-label">Especificaciones:</label>
-                        <textarea id="product-specs" name="product-specs" class="form-control" rows="4"
-                            required></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="{% static 'mobilemart/js/scriptagregarprod.js' %}"></script>

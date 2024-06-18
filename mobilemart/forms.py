@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario
+from .models import Usuario, Celular
 from .enumeraciones import *
 
 
@@ -16,6 +16,18 @@ class UpdateUsuarioForm(forms.ModelForm):
     
     class Meta:
         model = Usuario
-        fields = ['nombre','apellido','username','correo','telefono','region','comuna','num_departamento']
+        fields = ['nombre','apellido','username','correo','telefono','region','comuna','direccion','num_departamento']
+
+class CelularForm(forms.ModelForm):
+    
+    class Meta:
+        model = Celular
+        fields = ['modelo','marca','precio','especificaciones','foto']
+
+class UpdateCelularForm(forms.ModelForm):
+    
+    class Meta:
+        model = Celular
+        fields = ['modelo','marca','precio','especificaciones','foto']
 
     

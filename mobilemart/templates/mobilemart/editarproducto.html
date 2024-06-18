@@ -26,8 +26,13 @@
                         <h3 class="card-title">{{c.modelo}}</h3>
                         <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>
                         <div class="d-flex">
-                            <a href="{% url 'ventanaedicion' %}" class="btn btn-primary mr-2">Editar</a>
-                            <button class="btn btn-danger" style="margin-left: 5px;">Eliminar</button>
+                            <a href="{% url 'ventanaedicion' c.id %}" class="btn btn-primary mr-2">
+                                Editar
+                            </a>
+                            <form method="post" action="{% url 'eliminarproducto' c.id %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger ms-2">Eliminar</button>
+                            </form>
                         </div>
                     </div>
                 </div>

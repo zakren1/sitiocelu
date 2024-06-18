@@ -28,9 +28,8 @@
                     class="d-inline-block align-text-top">
                 MobileMart
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -79,11 +78,20 @@
                             </svg>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="">Bienvenido, <strong>{{user.username}}</strong></a></li>
                             <li><a class="dropdown-item" href="{% url 'perfilusuario' %}">Perfil</a></li>
                             <li><a class="dropdown-item" href="{% url 'pedidosuser' %}">Mis pedidos</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'iniciosesion' %}">Iniciar sesión</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'cerrar_sesion' %}">Cerrar sesión</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                            {% endif %}
+
+
                         </ul>
                     </li>
                 </ul>
@@ -100,8 +108,10 @@
         <div class="container">
             <div class="row text-white g-4">
                 <div class="col-md-6 col-lg-3">
-                    <a class="text-uppercase text-decoration-none brand text-white" href="{% url 'index' %}">MobileMart</a>
-                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos celulares y dispositivos móviles.</p>
+                    <a class="text-uppercase text-decoration-none brand text-white"
+                        href="{% url 'index' %}">MobileMart</a>
+                    <p class="text-white text-opacity-50 mt-3">Tienda en línea especializada en la venta de teléfonos
+                        celulares y dispositivos móviles.</p>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
