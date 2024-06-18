@@ -11,11 +11,11 @@ class Usuario(models.Model):
     username=models.CharField("Nombre de usuario", max_length=50, null=False)
     correo=models.EmailField(verbose_name="E-mail")
     password=models.CharField(max_length=50, null=False)
-    telefono = models.CharField(max_length=20, blank=True)  # Nuevo campo
+    telefono = models.CharField(verbose_name="Teléfono", max_length=20, blank=True)  # Nuevo campo
     direccion = models.CharField(max_length=255, blank=True)  # Nuevo campo
-    region = models.CharField(max_length=100, blank=True)  # Nuevo campo
+    region = models.CharField(verbose_name="Región", max_length=100, blank=True)  # Nuevo campo
     comuna = models.CharField(max_length=100, blank=True)  # Nuevo campo
-    num_departamento = models.CharField(max_length=10, blank=True)  # Nuevo campo
+    num_departamento = models.CharField(verbose_name="N° de departamento (si aplica)", max_length=10, blank=True)  # Nuevo campo
 
     def __str__(self):
         return f"{self.rut}"

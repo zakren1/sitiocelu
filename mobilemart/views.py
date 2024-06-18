@@ -123,7 +123,7 @@ def listadousuarios(request):
 
 # Vista para la página detalle-modificar usuario
 def detalleusuario(request, rut):
-    usuario = get_object_or_404(Usuario, rut=id)
+    usuario = get_object_or_404(Usuario, rut=rut)
     form = UpdateUsuarioForm(instance=usuario)
 
     if request.method == "POST":
@@ -138,7 +138,6 @@ def detalleusuario(request, rut):
     }
     
     return render(request, 'mobilemart/detalleusuario.html',datos)
-
 
 # Vista para la página listado pedidos
 def listadopedidos(request):

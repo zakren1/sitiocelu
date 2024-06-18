@@ -1,5 +1,6 @@
 {% extends 'mobilemart/baseadmin.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
     {% block title %}Editar usuario{% endblock %}
@@ -21,39 +22,9 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Editar usuario</h4>
                     </div>
-                    <form id="editarperfil-form" action="{% url 'administracion' %}" method="post">
-                        <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels readonly-label">Nombre</label><input type="text"
-                                    class="form-control readonly-input" placeholder="Cristhofer" value="" readonly>
-                            </div>
-                            <div class="col-md-6"><label class="labels readonly-label">Apellido</label><input
-                                    type="text" class="form-control readonly-input" value="" placeholder="Álvarez"
-                                    readonly></div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels readonly-label">Nombre de usuario</label><input
-                                    type="text" class="form-control readonly-input" placeholder="CrisMj" value=""
-                                    readonly></div>
-                            <div class="col-md-12"><label class="form-label">Correo electrónico</label><input
-                                    type="email" class="form-control" id="idemail" placeholder="crismj@gmail.com"
-                                    value="" required></div>
-                            <div class="col-md-12"><label class="form-label">Número de teléfono</label><input
-                                    type="text" class="form-control" id="idtelefono" placeholder="9 7421 3224" value=""
-                                    minlength="9" maxlength="9" required></div>
-                            <div class="col-md-12"><label class="labels">Región</label><select class="form-select"
-                                    name="regiones" id="regiones">
-                                </select>
-                            </div>
-                            <div class="col-md-12"><label class="labels">Comuna</label><select class="form-select"
-                                    name="comunas" id="comunas">
-                                </select></div>
-                            <div class="col-md-12"><label class="form-label">Dirección</label><input type="text"
-                                    class="form-control" id="iddireccion" placeholder="San Martín 940" value=""
-                                    required></div>
-                            <div class="col-md-12"><label class="labels">N° de departamento (si aplica)</label><input
-                                    type="text" class="form-control" id="idnumdepto" placeholder="" value=""></div>
-
-                        </div>
+                    <form id="editarperfil-form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form | crispy}}
                         <div class="mt-4 text-center"><button class="btn btn-primary profile-button"
                                 type="submit">Guardar
                                 Usuario</button></div>
