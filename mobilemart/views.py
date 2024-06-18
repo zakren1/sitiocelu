@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from .models import Usuario, Celular
+from .forms import UsuarioForm, UpdateUsuarioForm
+
+
 
 # Create your views here.
 
@@ -82,7 +86,31 @@ def ventanaedicion(request):
 
 # Vista para la página crear usuario
 def crearusuario(request):
-    return render(request, 'mobilemart/crearusuario.html')
+    
+    form=UsuarioForm()
+    if request.method == 'POST':
+        
+        form=UsuarioForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(to="listadousuarios")
+            #Redirigir
+
+    datos={
+        "form":form
+    }
+    return render(request, 'mobilemart/crearusuario.html', datos)
+
+def eliminar_usuario(request, rut):
+    usuario = get_object_or_404(Usuario, rut=rut)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('listadousuarios')
+    
+    datos={
+        "usuarios":usuario
+    }
+    return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página listado usuarios
 def listadousuarios(request):
@@ -93,9 +121,24 @@ def listadousuarios(request):
     }
     return render(request, 'mobilemart/listadousuarios.html', datos)
 
-# Vista para la página detalle usuario
-def detalleusuario(request):
-    return render(request, 'mobilemart/detalleusuario.html')
+# Vista para la página detalle-modificar usuario
+def detalleusuario(request, rut):
+    usuario = get_object_or_404(Usuario, rut=id)
+    form = UpdateUsuarioForm(instance=usuario)
+
+    if request.method == "POST":
+        form = UpdateUsuarioForm(data=request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('listadousuarios')
+        
+    datos={
+        "form":form,
+        "persona":usuario
+    }
+    
+    return render(request, 'mobilemart/detalleusuario.html',datos)
+
 
 # Vista para la página listado pedidos
 def listadopedidos(request):

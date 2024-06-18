@@ -24,19 +24,24 @@
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Email</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for u in usuarios  %}
+                    {% for u in usuarios %}
                     <tr>
-                        <td>{{u.rut}}</td>
-                        <td>{{u.nombre}} {{u.apellido}}</td>
-                        <td>{{u.username}}</td>
-                        <td>{{u.correo}}</td>
+                        <td>{{ u.rut }}</td>
+                        <td>{{ u.nombre }} {{ u.apellido }}</td>
+                        <td>{{ u.username }}</td>
+                        <td>{{ u.correo }}</td>
                         <td>
-                            <a href="{% url 'detalleusuario' %}"><button class="btn btn-dark">Editar</button></a>
-                            <button class="btn btn-danger ms-2" onclick="eliminarUsuario()">Eliminar</button>
+                            <a href="{% url 'detalleusuario' u.rut %}">
+                                <button class="btn btn-dark">Editar</button>
+                            </a>
+                            <form method="post" action="{% url 'eliminarusuario' u.rut %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger ms-2">Eliminar</button>
+                            </form>
                             <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
                         </td>
                     </tr>

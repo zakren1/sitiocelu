@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 
 from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario,
 pedidosuser, iniciosesion, about, detalle_producto, recuperar_contrasena, registro_usuario, detalle_pedido_usuario,
-agregarproducto, ventanaedicion, crearusuario, listadousuarios, detalleusuario, listadopedidos, detallepedido)
+agregarproducto, ventanaedicion, crearusuario, listadousuarios, detalleusuario, listadopedidos, detallepedido, eliminar_usuario)
 
 urlpatterns = [
     path('',index,name='index'),
@@ -25,9 +25,10 @@ urlpatterns = [
     path('ventanaedicion/', ventanaedicion, name='ventanaedicion'),
     path('crearusuario/', crearusuario, name='crearusuario'),
     path('listadousuarios/', listadousuarios, name='listadousuarios'),
-    path('detalleusuarios/', detalleusuario, name='detalleusuario'),
+    path('detalleusuarios/<str:rut>/', detalleusuario, name='detalleusuario'),
     path('listadopedidos/', listadopedidos, name='listadopedidos'),
     path('detallepedido/', detallepedido, name='detallepedido'),
+    path('eliminarusuario/<str:rut>/', eliminar_usuario, name='eliminarusuario'),
 ]
 
 if settings.DEBUG:

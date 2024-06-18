@@ -8,9 +8,14 @@ class Usuario(models.Model):
     rut=models.CharField(max_length=10, primary_key=True)
     nombre=models.CharField(max_length=50, null=False)
     apellido=models.CharField(max_length=50, null=False)
-    username=models.CharField(max_length=50, null=False)
+    username=models.CharField("Nombre de usuario", max_length=50, null=False)
     correo=models.EmailField(verbose_name="E-mail")
     password=models.CharField(max_length=50, null=False)
+    telefono = models.CharField(max_length=20, blank=True)  # Nuevo campo
+    direccion = models.CharField(max_length=255, blank=True)  # Nuevo campo
+    region = models.CharField(max_length=100, blank=True)  # Nuevo campo
+    comuna = models.CharField(max_length=100, blank=True)  # Nuevo campo
+    num_departamento = models.CharField(max_length=10, blank=True)  # Nuevo campo
 
     def __str__(self):
         return f"{self.rut}"
