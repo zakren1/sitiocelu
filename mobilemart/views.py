@@ -11,7 +11,16 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
-    return render(request,'mobilemart/index.html')
+    destacado_apple = Celular.objects.filter(marca="Apple").first()
+    destacado_samsung = Celular.objects.filter(marca="Samsung").first()
+    destacado_xiaomi = Celular.objects.filter(marca="Xiaomi").first()
+
+    datos = {
+        "destacado_apple": destacado_apple,
+        "destacado_samsung": destacado_samsung,
+        "destacado_xiaomi": destacado_xiaomi,
+    }
+    return render(request,'mobilemart/index.html', datos)
 
 # Vista para la página de Samsung
 def samsung(request):
@@ -56,8 +65,13 @@ def about(request):
     return render(request, 'mobilemart/about.html')
 
 # Vista para la página detalle producto
-def detalle_producto(request):
-    return render(request, 'mobilemart/pa-iphone15pro.html')
+def detalle_producto(request, id):
+    celular = get_object_or_404(Celular, id=id)
+
+    datos={
+        "celular":celular
+    }
+    return render(request, 'mobilemart/detalleproducto.html', datos)
 
 # Vista para la página recuperar contraseña
 def recuperar_contrasena(request):
@@ -75,7 +89,6 @@ def detalle_pedido_usuario(request):
 
 # Vista para la página de Administración (editarproducto)
 def administracion(request):
-
     celulares=Celular.objects.all() #queryset
     
     datos={
@@ -85,7 +98,6 @@ def administracion(request):
 
 # Vista para la página agregar producto
 def agregarproducto(request):
-
     form=CelularForm()
     if request.method == 'POST':
         
@@ -125,13 +137,12 @@ def ventanaedicion(request, id):
         
     datos={
         "form":form,
-        "ceular":celular
+        "celular":celular
     }
     return render(request, 'mobilemart/ventanaedicion.html', datos)
 
 # Vista para la página crear usuario
-def crearusuario(request):
-    
+def crearusuario(request): 
     form=UsuarioForm()
     if request.method == 'POST':
         

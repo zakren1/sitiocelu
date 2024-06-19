@@ -1,11 +1,12 @@
 {% extends 'mobilemart/base.html' %}
 {% load static %}
+{% load humanize %}
 
 
     {% block title %}Apple{% endblock %}
 
     {% block links %}
-        <link rel="stylesheet" href="{% static 'mobilemart/css/Producto.css' %}"
+        <link rel="stylesheet" href="{% static 'mobilemart/css/Producto.css' %}">
     {% endblock links %}
 
 
@@ -17,17 +18,17 @@
         <div class="product-details">
             <!--Imagen-->
             <div class="product-img">
-                <img src="{% static 'mobilemart/img/iphone15pro.jpg' %}" alt="iPhone 15 Pro Max" />
+                <img src="{{celular.foto.url}}" alt="" />
             </div>
             <!--Texto-->
             <div class="product-text">
                 <!--Detalles-->
-                <span class="product-category">Apple</span>
-                <h3>Iphone 15 Pro Max</h3>
-                <span class="product-price">$1.380.000</span>
+                <span class="product-category">{{celular.marca}}</span>
+                <h3>{{celular.modelo}}</h3>
+                <span class="product-price">${{celular.precio|intcomma:False}}</span>
                 <h4 style="margin-top: 20px;">Especificaciones</h4>
-                <p>Pantalla: OLED Super Retina XDR de 6.9 pulgadas
-                    <br />
+                <p>{{celular.especificaciones}}
+                    <!-- <br />
                     Procesador: Apple A16 Bionic
                     <br />
                     Memoria: RAM de 6 GB, almacenamiento base de 128 GB
@@ -40,7 +41,7 @@
                     <br />
                     Diseño: Premium de vidrio y metal con certificación IP68
                     <br />
-                    Sistema Operativo: iOS 16
+                    Sistema Operativo: iOS 16 -->
                 </p>
                 <!--size-->
                 <div class="product-color-container">

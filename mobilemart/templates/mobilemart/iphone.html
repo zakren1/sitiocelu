@@ -27,7 +27,7 @@
                         <h3 class="card-title">{{c.modelo}}</h3>
                         <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>                      
                         <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' %}" class="btn btn-success">Ver detalles</a>                     
+                        <a href="{% url 'detalle_producto' c.id %}" class="btn btn-success">Ver detalles</a>                     
                     </div>
                 </div>
             </div>
