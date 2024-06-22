@@ -1,9 +1,27 @@
 from django.contrib import admin
-from .models import Usuario
-from .models import Celular
+from django.contrib.auth.admin import UserAdmin
+from .models import Usuario, Celular, CustomUser
 
-class AdmUsuario(admin.ModelAdmin):
-    list_display= ['rut', 'nombre', 'apellido', 'username', 'correo']
+class AdmCustomUser(UserAdmin):
+    model = CustomUser
+    list_display = ('email', 'nombre', 'apellido', 'rut','is_staff', 'is_active')
+    list_filter = ('is_staff', 'is_active')
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Información personal', {'fields': ('nombre', 'apellido', 'rut', 'telefono', 'region', 'comuna', 'direccion')}),
+        ('Permisos', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+        ),
+    )
+    search_fields = ('email', 'nombre', 'apellido', 'rut')
+    ordering = ('email',)
+
+#class AdmUsuario(admin.ModelAdmin):
+    #list_display= ['rut', 'nombre', 'apellido', 'username', 'correo']
     #list_editable= ['rut', 'username', 'correo']
 
 class AdmCelular(admin.ModelAdmin):
@@ -15,6 +33,7 @@ class AdmCelular(admin.ModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Usuario, AdmUsuario)
+#admin.site.register(Usuario, AdmUsuario)
 admin.site.register(Celular, AdmCelular)
+admin.site.register(CustomUser, AdmCustomUser)
 

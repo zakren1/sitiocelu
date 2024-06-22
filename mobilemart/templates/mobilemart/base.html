@@ -80,7 +80,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
 
                             {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="">Bienvenido, <strong>{{user.username}}</strong></a></li>
+                            <li><a class="dropdown-item" href="">Bienvenido, <strong>{{request.user.nombre}}</strong></a></li>
                             <li><a class="dropdown-item" href="{% url 'perfilusuario' %}">Perfil</a></li>
                             <li><a class="dropdown-item" href="{% url 'pedidosuser' %}">Mis pedidos</a></li>
                             <li>

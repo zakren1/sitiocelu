@@ -33,16 +33,18 @@
                         <td>{{ u.rut }}</td>
                         <td>{{ u.nombre }} {{ u.apellido }}</td>
                         <td>{{ u.username }}</td>
-                        <td>{{ u.correo }}</td>
+                        <td>{{ u.email }}</td>
                         <td>
-                            <a href="{% url 'detalleusuario' u.rut %}">
+                            <a href="{% url 'detalleusuario' pk=u.pk %}">
                                 <button class="btn btn-dark">Editar</button>
                             </a>
-                            <form method="post" action="{% url 'eliminarusuario' u.rut %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+                            {% if not u.is_superuser %}
+                            <form method="post" action="{% url 'eliminarusuario' pk=u.pk %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger ms-2">Eliminar</button>
                             </form>
                             <button class="btn btn-warning ms-2" onclick="suspenderUsuario()">Suspender</button>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

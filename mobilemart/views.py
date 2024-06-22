@@ -1,14 +1,25 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from .models import Usuario, Celular
-from .forms import UsuarioForm, UpdateUsuarioForm, CelularForm, UpdateCelularForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Celular, CustomUser
+from .forms import CelularForm, UpdateCelularForm
+from .forms import CustomUserCreationForm, CustomUserUpdateForm, CustomAuthenticationForm
 from os import remove, path
 from django.conf import settings
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.views import generic
 
 
 # Create your views here.
+
+class RegistroView(generic.CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/registro.html'
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = 'registration/login.html'
 
 def index(request):
     destacado_apple = Celular.objects.filter(marca="Apple").first()
@@ -130,7 +141,7 @@ def ventanaedicion(request, id):
     form = UpdateCelularForm(instance=celular)
 
     if request.method == "POST":
-        form = UpdateCelularForm(data=request.POST, instance=celular)
+        form = UpdateCelularForm(data=request.POST, files=request.FILES, instance=celular)
         if form.is_valid():
             form.save()
             return redirect('administracion')
@@ -143,10 +154,10 @@ def ventanaedicion(request, id):
 
 # Vista para la página crear usuario
 def crearusuario(request): 
-    form=UsuarioForm()
+    form=CustomUserUpdateForm()
     if request.method == 'POST':
         
-        form=UsuarioForm(data=request.POST,files=request.FILES)
+        form=CustomUserUpdateForm(data=request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect(to="listadousuarios")
@@ -157,20 +168,20 @@ def crearusuario(request):
     }
     return render(request, 'mobilemart/crearusuario.html', datos)
 
-def eliminar_usuario(request, rut):
-    usuario = get_object_or_404(Usuario, rut=rut)
+def eliminar_usuario(request, pk):
+    usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
         usuario.delete()
         return redirect('listadousuarios')
     
     datos={
-        "usuarios":usuario
+        "usuario":usuario
     }
     return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página listado usuarios
 def listadousuarios(request):
-    usuarios=Usuario.objects.all()
+    usuarios=CustomUser.objects.all()
     
     datos={
         "usuarios":usuarios
@@ -178,12 +189,12 @@ def listadousuarios(request):
     return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página detalle-modificar usuario
-def detalleusuario(request, rut):
-    usuario = get_object_or_404(Usuario, rut=rut)
-    form = UpdateUsuarioForm(instance=usuario)
+def detalleusuario(request, pk):
+    usuario = get_object_or_404(CustomUser, pk=pk)
+    form = CustomUserUpdateForm(instance=usuario)
 
     if request.method == "POST":
-        form = UpdateUsuarioForm(data=request.POST, instance=usuario)
+        form = CustomUserUpdateForm(data=request.POST, instance=usuario)
         if form.is_valid():
             form.save()
             return redirect('listadousuarios')

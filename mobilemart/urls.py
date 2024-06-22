@@ -3,8 +3,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario, pedidosuser, about,
-detalle_producto, recuperar_contrasena, registro_usuario, detalle_pedido_usuario, agregarproducto, ventanaedicion, 
-crearusuario, listadousuarios, detalleusuario, listadopedidos, detallepedido, eliminar_usuario, eliminar_producto, cerrar_sesion)
+detalle_producto, recuperar_contrasena, RegistroView, detalle_pedido_usuario, agregarproducto, ventanaedicion, crearusuario,
+ listadousuarios, detalleusuario, listadopedidos, detallepedido, eliminar_usuario, eliminar_producto, CustomLoginView, cerrar_sesion)
 
 urlpatterns = [
     path('',index,name='index'),
@@ -18,19 +18,20 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('detalleproducto/<int:id>/', detalle_producto, name='detalle_producto'),
     path('recuperarcontra/', recuperar_contrasena, name='recuperar_contrasena'),
-    path('registro/', registro_usuario, name='registro_usuario'),
+    path('registro/', RegistroView.as_view(), name='registro_usuario'),
     path('detallepedidouser/', detalle_pedido_usuario, name='detalle_pedido_usuario'),
     path('agregarproducto/', agregarproducto, name='agregarproducto'),
     path('ventanaedicion/<int:id>/', ventanaedicion, name='ventanaedicion'),
     path('crearusuario/', crearusuario, name='crearusuario'),
     path('listadousuarios/', listadousuarios, name='listadousuarios'),
-    path('detalleusuario/<str:rut>/', detalleusuario, name='detalleusuario'),
+    path('detalleusuario/<int:pk>/', detalleusuario, name='detalleusuario'),
     path('listadopedidos/', listadopedidos, name='listadopedidos'),
     path('detallepedido/', detallepedido, name='detallepedido'),
-    path('eliminarusuario/<str:rut>/', eliminar_usuario, name='eliminarusuario'),
+    path('eliminarusuario/<int:pk>/', eliminar_usuario, name='eliminarusuario'),
     path('eliminarproducto/<int:id>/', eliminar_producto, name='eliminarproducto'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('cerrar_sesion',cerrar_sesion, name='cerrar_sesion')
-    #path('iniciosesion/', iniciosesion, name='iniciosesion'),
+    
 ]
 
 if settings.DEBUG:
