@@ -56,7 +56,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sitio.urls'
 
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL='redirect_login'
 LOGOUT_REDIRECT_URL='/'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"

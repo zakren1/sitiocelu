@@ -2,9 +2,9 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario, pedidosuser, about,
-detalle_producto, recuperar_contrasena, RegistroView, detalle_pedido_usuario, agregarproducto, ventanaedicion, crearusuario,
- listadousuarios, detalleusuario, listadopedidos, detallepedido, eliminar_usuario, eliminar_producto, CustomLoginView, cerrar_sesion)
+from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario, perfilusuarioadmin, pedidosuser, about,
+detalle_producto, recuperar_contrasena, RegistroView, detalle_pedido_usuario, agregarproducto, ventanaedicion, crearusuario, listadousuarios,
+detalleusuario, listadopedidos, detallepedido, eliminar_usuario, eliminar_producto, CustomLoginView, cerrar_sesion, redirect_login)
 
 urlpatterns = [
     path('',index,name='index'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('administracion/', administracion, name='administracion'),
     path('carrito/', carrito, name='carrito'),
     path('perfilusuario/', perfilusuario, name='perfilusuario'),
+    path('perfilusuarioadmin/', perfilusuarioadmin, name='perfilusuarioadmin'),
     path('pedidosuser/', pedidosuser, name='pedidosuser'),
     path('about/', about, name='about'),
     path('detalleproducto/<int:id>/', detalle_producto, name='detalle_producto'),
@@ -30,8 +31,8 @@ urlpatterns = [
     path('eliminarusuario/<int:pk>/', eliminar_usuario, name='eliminarusuario'),
     path('eliminarproducto/<int:id>/', eliminar_producto, name='eliminarproducto'),
     path('login/', CustomLoginView.as_view(), name='login'),
-    path('cerrar_sesion',cerrar_sesion, name='cerrar_sesion')
-    
+    path('cerrar_sesion',cerrar_sesion, name='cerrar_sesion'),
+    path('redirect/', redirect_login, name='redirect_login'),
 ]
 
 if settings.DEBUG:

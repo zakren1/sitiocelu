@@ -29,9 +29,9 @@
                             <a href="{% url 'ventanaedicion' c.id %}" class="btn btn-primary mr-2">
                                 Editar
                             </a>
-                            <form method="post" action="{% url 'eliminarproducto' c.id %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                            <form method="post" action="{% url 'eliminarproducto' c.id %}" style="display:inline;" id="delete-form-{{ c.id }}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger ms-2">Eliminar</button>
+                                <button type="button" class="btn btn-danger ms-2" onclick="confirmDelete('{{ c.id }}')">Eliminar</button>
                             </form>
                         </div>
                     </div>
@@ -40,6 +40,24 @@
             {% endfor %} 
         </div>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "El producto será eliminado permanentemente.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                confirmButtonText: 'Sí, eliminarlo',
+                cancelButtonText: 'Cancelar'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            })
+        }
+    </script>
 
     <script src="{% static 'mobilemart/js/scriptagregarprod.js' %}"></script>
     {% endblock contenido %}

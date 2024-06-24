@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src=" {% static 'mobilemart/js/bootstrap.bundle.min.js' %} "></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/sweetalert2.min.css">
+    <script src="{% static 'mobilemart/js/bootstrap.bundle.min.js' %}"></script>
 
     {% block links %}
     {% endblock links %}
@@ -49,9 +50,9 @@
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="{% url 'administracion' %}">Administración</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
@@ -194,6 +195,33 @@
         </div>
     </footer>
     <!--FIN FOOTER-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+        {% for m in messages %}
+            <script>
+                
+                {% if 'success' in m.tags %}
+                    var icon = 'success';
+                {% elif 'info' in m.tags %}
+                    var icon = 'info';
+                {% elif 'warning' in m.tags %}
+                    var icon = 'warning';
+                {% elif 'error' in m.tags %}
+                    var icon = 'error';
+                {% else %}
+                    var icon = 'info';  // Por defecto, usar 'info' si no se reconoce el tipo
+                {% endif %}
+
+                Swal.fire({
+                    title: "¡Operación exitosa!",
+                    text: "{{m}}",
+                    icon: icon
+                  });
+
+            </script>
+        {% endfor %}
+    {% endif %}
 </body>
 
 </html>

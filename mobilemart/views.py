@@ -4,8 +4,11 @@ from .forms import CelularForm, UpdateCelularForm
 from .forms import CustomUserCreationForm, CustomUserUpdateForm, CustomAuthenticationForm
 from os import remove, path
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -20,6 +23,12 @@ class RegistroView(generic.CreateView):
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
     template_name = 'registration/login.html'
+        
+def redirect_login(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect(reverse_lazy('administracion'))
+    else:
+        return HttpResponseRedirect(reverse_lazy('index'))
 
 def index(request):
     destacado_apple = Celular.objects.filter(marca="Apple").first()
@@ -57,7 +66,16 @@ def carrito(request):
 
 # Vista para la página del Perfil del Usuario
 def perfilusuario(request):
-    return render(request, 'mobilemart/perfilusuario.html')
+    if request.method == "POST":
+        form = CustomUserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil actualizado correctamente')
+            return redirect('perfilusuario')
+    else:
+        form = CustomUserUpdateForm(instance=request.user)
+
+    return render(request, 'mobilemart/perfilusuario.html', {'form': form})
 
 # Vista para la página de Pedidos del Usuario
 def pedidosuser(request):
@@ -99,6 +117,7 @@ def detalle_pedido_usuario(request):
 ##### VISTAS DE ADMINISTRADOR #####
 
 # Vista para la página de Administración (editarproducto)
+@user_passes_test(lambda u: u.is_superuser)
 def administracion(request):
     celulares=Celular.objects.all() #queryset
     
@@ -107,7 +126,21 @@ def administracion(request):
     }
     return render(request, 'mobilemart/editarproducto.html', datos)
 
+# Vista para la página del Perfil del Usuario del Admin
+def perfilusuarioadmin(request):
+    if request.method == "POST":
+        form = CustomUserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil actualizado correctamente.')
+            return redirect('perfilusuarioadmin')
+    else:
+        form = CustomUserUpdateForm(instance=request.user)
+
+    return render(request, 'mobilemart/perfilusuarioadmin.html', {'form': form})
+
 # Vista para la página agregar producto
+@user_passes_test(lambda u: u.is_superuser)
 def agregarproducto(request):
     form=CelularForm()
     if request.method == 'POST':
@@ -115,6 +148,7 @@ def agregarproducto(request):
         form=CelularForm(data=request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Producto agregado correctamente.')
             return redirect(to="administracion")
             #Redirigir
 
@@ -123,11 +157,13 @@ def agregarproducto(request):
     }
     return render(request, 'mobilemart/agregarproducto.html', datos)
 
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_producto(request, id):
     celular = get_object_or_404(Celular, id=id)
     if request.method == 'POST':
         remove(path.join(str(settings.MEDIA_ROOT).replace('/media',''))+celular.foto.url)
         celular.delete()
+        messages.success(request, 'Producto eliminado correctamente.')
         return redirect('administracion')
     
     datos={
@@ -136,6 +172,7 @@ def eliminar_producto(request, id):
     return render(request, 'mobilemart/eliminarproducto.html', datos)
 
 # Vista para la página ventana edición (editar producto específico)
+@user_passes_test(lambda u: u.is_superuser)
 def ventanaedicion(request, id):
     celular = get_object_or_404(Celular, id=id)
     form = UpdateCelularForm(instance=celular)
@@ -144,6 +181,7 @@ def ventanaedicion(request, id):
         form = UpdateCelularForm(data=request.POST, files=request.FILES, instance=celular)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Producto modificado correctamente.')
             return redirect('administracion')
         
     datos={
@@ -153,6 +191,7 @@ def ventanaedicion(request, id):
     return render(request, 'mobilemart/ventanaedicion.html', datos)
 
 # Vista para la página crear usuario
+@user_passes_test(lambda u: u.is_superuser)
 def crearusuario(request): 
     form=CustomUserUpdateForm()
     if request.method == 'POST':
@@ -160,6 +199,7 @@ def crearusuario(request):
         form=CustomUserUpdateForm(data=request.POST,files=request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Usuario creado correctamente.')
             return redirect(to="listadousuarios")
             #Redirigir
 
@@ -168,10 +208,12 @@ def crearusuario(request):
     }
     return render(request, 'mobilemart/crearusuario.html', datos)
 
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_usuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
         usuario.delete()
+        messages.success(request, 'Usuario eliminado correctamente.')
         return redirect('listadousuarios')
     
     datos={
@@ -180,6 +222,7 @@ def eliminar_usuario(request, pk):
     return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página listado usuarios
+@user_passes_test(lambda u: u.is_superuser)
 def listadousuarios(request):
     usuarios=CustomUser.objects.all()
     
@@ -189,6 +232,7 @@ def listadousuarios(request):
     return render(request, 'mobilemart/listadousuarios.html', datos)
 
 # Vista para la página detalle-modificar usuario
+@user_passes_test(lambda u: u.is_superuser)
 def detalleusuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     form = CustomUserUpdateForm(instance=usuario)
@@ -197,6 +241,7 @@ def detalleusuario(request, pk):
         form = CustomUserUpdateForm(data=request.POST, instance=usuario)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Usuario modificado correctamente.')
             return redirect('listadousuarios')
         
     datos={
@@ -207,10 +252,12 @@ def detalleusuario(request, pk):
     return render(request, 'mobilemart/detalleusuario.html',datos)
 
 # Vista para la página listado pedidos
+@user_passes_test(lambda u: u.is_superuser)
 def listadopedidos(request):
     return render(request, 'mobilemart/listadopedidos.html')
 
 # Vista para la página detalle pedido
+@user_passes_test(lambda u: u.is_superuser)
 def detallepedido(request):
     return render(request, 'mobilemart/detallepedido.html')
 
