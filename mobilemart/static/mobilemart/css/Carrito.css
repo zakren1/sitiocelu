@@ -109,8 +109,6 @@ input:focus::-webkit-input-placeholder
     color: white;
     width: 100%;
     font-size: 0.7rem;
-    margin-top: 4vh;
-    padding: 1vh;
     border-radius: 0;
 }
 .carrito-section .btn:focus{
@@ -131,4 +129,39 @@ a{
 a:hover{
     color: black;
     text-decoration: none;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.btn-quantity {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price {
+    margin-right: 0.5rem;
 }

@@ -2,9 +2,10 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import (index, iphone, samsung, xiaomi, administracion, carrito, perfilusuario, perfilusuarioadmin, pedidosuser, about,
-detalle_producto, recuperar_contrasena, RegistroView, detalle_pedido_usuario, agregarproducto, ventanaedicion, crearusuario, listadousuarios,
-detalleusuario, listadopedidos, detallepedido, eliminar_usuario, eliminar_producto, CustomLoginView, cerrar_sesion, redirect_login)
+from .views import (index, iphone, samsung, xiaomi, administracion, ver_carrito, agregar_al_carrito, actualizar_carrito, 
+eliminar_item_carrito, perfilusuario, perfilusuarioadmin, pedidosuser, about, detalle_producto, recuperar_contrasena, RegistroView,
+detalle_pedido_usuario, agregarproducto, ventanaedicion, crearusuario, listadousuarios, detalleusuario, listadopedidos, detallepedido, 
+eliminar_usuario, eliminar_producto, CustomLoginView, cerrar_sesion, redirect_login)
 
 urlpatterns = [
     path('',index,name='index'),
@@ -12,7 +13,10 @@ urlpatterns = [
     path('samsung/', samsung, name='samsung'),
     path('xiaomi/', xiaomi, name='xiaomi'),
     path('administracion/', administracion, name='administracion'),
-    path('carrito/', carrito, name='carrito'),
+    path('carrito/', ver_carrito, name='ver_carrito'),
+    path('agregarcarrito/<int:id>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('carrito/actualizar/<int:id>/', actualizar_carrito, name='actualizar_carrito'),
+    path('carrito/eliminar/<int:id>/', eliminar_item_carrito, name='eliminar_item_carrito'),
     path('perfilusuario/', perfilusuario, name='perfilusuario'),
     path('perfilusuarioadmin/', perfilusuarioadmin, name='perfilusuarioadmin'),
     path('pedidosuser/', pedidosuser, name='pedidosuser'),

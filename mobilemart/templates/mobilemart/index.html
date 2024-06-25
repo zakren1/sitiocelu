@@ -8,7 +8,8 @@
 <!--CAROUSEL-->
 <div id="carouselE1" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselE1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselE1" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselE1" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselE1" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
@@ -58,8 +59,15 @@
                 <div class="card-body">
                     <h3 class="card-title">{{destacado_apple.modelo}}</h3>
                     <h5 class="card-text">Precio : ${{destacado_apple.precio|intcomma:False}}</h5>
-                    <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                    <a href="{% url 'detalle_producto' destacado_apple.id %}" class="btn btn-success">Ver detalles</a>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                        <form action="{% url 'agregar_al_carrito' id=destacado_apple.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="cantidad" value="1">
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </form>
+                        <a href="{% url 'detalle_producto' destacado_apple.id %}" class="btn btn-success">Ver
+                            detalles</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,8 +77,15 @@
                 <div class="card-body">
                     <h3 class="card-title">{{destacado_samsung.modelo}}</h3>
                     <h5 class="card-text">Precio : ${{destacado_samsung.precio|intcomma:False}}</h5>
-                    <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                    <a href="{% url 'detalle_producto' destacado_samsung.id %}" class="btn btn-success">Ver detalles</a>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                        <form action="{% url 'agregar_al_carrito' id=destacado_samsung.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="cantidad" value="1">
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </form>
+                        <a href="{% url 'detalle_producto' destacado_samsung.id %}" class="btn btn-success">Ver
+                            detalles</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,8 +95,15 @@
                 <div class="card-body">
                     <h3 class="card-title">{{destacado_xiaomi.modelo}}</h3>
                     <h5 class="card-text">Precio : ${{destacado_xiaomi.precio|intcomma:False}}</h5>
-                    <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                    <a href="{% url 'detalle_producto' destacado_xiaomi.id %}" class="btn btn-success">Ver detalles</a>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                        <form action="{% url 'agregar_al_carrito' id=destacado_xiaomi.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="cantidad" value="1">
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </form>
+                        <a href="{% url 'detalle_producto' destacado_xiaomi.id %}" class="btn btn-success">Ver
+                            detalles</a>
+                    </div>
                 </div>
             </div>
         </div>

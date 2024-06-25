@@ -1,8 +1,10 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from .enumeraciones import *
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from .enumeraciones import *
 
+# Create your models here.
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -41,8 +43,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-# Create your models here.
-class Usuario(models.Model):
+'''class Usuario(models.Model):
     rut=models.CharField(max_length=10, primary_key=True)
     nombre=models.CharField(max_length=50, null=False)
     apellido=models.CharField(max_length=50, null=False)
@@ -56,7 +57,7 @@ class Usuario(models.Model):
     num_departamento = models.CharField(verbose_name="N° de departamento (si aplica)", max_length=10, blank=True)  # Nuevo campo
 
     def __str__(self):
-        return f"{self.rut}"
+        return f"{self.rut}"'''
     
 
 class Celular(models.Model):
@@ -68,3 +69,21 @@ class Celular(models.Model):
 
     def __str__(self):
         return f"{self.modelo}"
+
+class Carrito(models.Model):
+    usuario = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    celulares = models.ManyToManyField(Celular, through='ItemCarrito')
+
+    def __str__(self):
+        return f"Carrito de {self.usuario.username}"
+
+class ItemCarrito(models.Model):
+    carrito = models.ForeignKey(Carrito, related_name='items', on_delete=models.CASCADE)
+    celular = models.ForeignKey(Celular, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.celular.modelo} x {self.cantidad}"
+
+    def subtotal(self):
+        return self.celular.precio * self.cantidad

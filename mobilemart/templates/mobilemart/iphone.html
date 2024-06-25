@@ -2,37 +2,43 @@
 {% load static %}
 {% load humanize %}
 
-    {% block title %}Apple{% endblock %}
+{% block title %}Apple{% endblock %}
 
-    {% block links %}
-        <link rel="stylesheet" href=" {% static 'mobilemart/Css/Marcas.css' %} ">
-    {% endblock links %}
-    
-
+{% block links %}
+<link rel="stylesheet" href=" {% static 'mobilemart/Css/Marcas.css' %} ">
+{% endblock links %}
 
 
 
 
 
-    {% block contenido %}
 
-    <div class="container" style="margin-bottom: 30px;">
-        <h3 class="border-bottom " style="margin-top: 30px;">Productos de Apple</h3>
-        <div class="row">
-            {% for c in celulares %}
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
-                <div class="card" style="width: 300px; margin-right: 10px;">
-                    <img class="card-img-top" src="{{c.foto.url}}" alt="{{c.modelo}}">
-                    <div class="card-body">
-                        <h3 class="card-title">{{c.modelo}}</h3>
-                        <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>                      
-                        <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
-                        <a href="{% url 'detalle_producto' c.id %}" class="btn btn-success">Ver detalles</a>                     
+
+{% block contenido %}
+
+<div class="container" style="margin-bottom: 30px;">
+    <h3 class="border-bottom " style="margin-top: 30px;">Productos de Apple</h3>
+    <div class="row">
+        {% for c in celulares %}
+        <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
+            <div class="card" style="width: 300px; margin-right: 10px;">
+                <img class="card-img-top" src="{{c.foto.url}}" alt="{{c.modelo}}">
+                <div class="card-body">
+                    <h3 class="card-title">{{c.modelo}}</h3>
+                    <h5 class="card-text">Precio : ${{c.precio|intcomma:False}} </h5>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                        <form action="{% url 'agregar_al_carrito' id=c.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="cantidad" value="1">
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </form>
+                        <a href="{% url 'detalle_producto' c.id %}" class="btn btn-success">Ver detalles</a>
                     </div>
                 </div>
             </div>
-            {% endfor %} 
         </div>
+        {% endfor %}
     </div>
-    
-    {% endblock contenido %}
+</div>
+
+{% endblock contenido %}

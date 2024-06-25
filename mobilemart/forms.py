@@ -1,5 +1,5 @@
 from django import forms
-from .models import Usuario, Celular, CustomUser
+from .models import Celular, CustomUser
 from .enumeraciones import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 

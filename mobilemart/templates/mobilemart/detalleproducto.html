@@ -46,7 +46,11 @@
 
                 <!--btn-->
                 <div class="product-button">
-                    <a href="{% url 'carrito' %}" class="btn btn-primary">Agregar al carrito</a>
+                    <form action="{% url 'agregar_al_carrito' id=celular.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
         </div>

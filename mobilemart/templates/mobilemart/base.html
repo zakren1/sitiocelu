@@ -58,7 +58,7 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- icono carro -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'carrito' %}">
+                        <a class="nav-link" href="{% url 'ver_carrito' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-cart" viewBox="0 0 16 16">
                                 <path
@@ -200,21 +200,28 @@
     {% if messages %}
         {% for m in messages %}
             <script>
+                var title = ''
+                var icon = ''
                 
                 {% if 'success' in m.tags %}
-                    var icon = 'success';
+                    title = "¡Operación exitosa!";
+                    icon = 'success';
                 {% elif 'info' in m.tags %}
-                    var icon = 'info';
+                    title = "Información";
+                    icon = 'info';
                 {% elif 'warning' in m.tags %}
-                    var icon = 'warning';
+                    title = "Advertencia";
+                    icon = 'warning';
                 {% elif 'error' in m.tags %}
-                    var icon = 'error';
+                    title = "Error";
+                    icon = 'error';
                 {% else %}
-                    var icon = 'info';  // Por defecto, usar 'info' si no se reconoce el tipo
+                    title = "Mensaje";
+                    icon = 'info';
                 {% endif %}
 
                 Swal.fire({
-                    title: "¡Operación exitosa!",
+                    title: title,
                     text: "{{m}}",
                     icon: icon
                   });

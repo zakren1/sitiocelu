@@ -1,5 +1,6 @@
 {% extends 'mobilemart/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Carrito{% endblock %}
 
@@ -20,36 +21,37 @@
                             <div class="col">
                                 <h4><b>Carrito de compras</b></h4>
                             </div>
-                            <div class="col align-self-center text-right text-muted" style="text-align: end;">2
-                                productos</div>
+                            <div class="col align-self-center text-right text-muted" style="text-align: end;">
+                                {{ carrito.items.count }} producto(s)</div>
                         </div>
                     </div>
+
+                    {% for item in items %}
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="{% static 'mobilemart/img/iphone15pro.jpg' %}" alt=""></div>
+                            <div class="col-2"><img class="img-fluid" src="{{item.celular.foto.url}}" alt=""></div>
                             <div class="col">
-                                <div class="row text-muted">Apple</div>
-                                <div class="row">Iphone 15 Pro Max</div>
+                                <div class="row text-muted">{{item.celular.marca}}</div>
+                                <div class="row">{{item.celular.modelo}}</div>
                             </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <form action="{% url 'actualizar_carrito' item.id %}" method="post" class="d-flex align-items-center">
+                                    {% csrf_token %}
+                                    <button type="submit" name="action" value="decrementar" class="btn btn-sm btn-secondary btn-quantity">-</button>
+                                    <span class="mx-2">{{ item.cantidad }}</span>
+                                    <button type="submit" name="action" value="incrementar" class="btn btn-sm btn-secondary btn-quantity">+</button>
+                                </form>
                             </div>
-                            <div class="col">&dollar; 1.380.000 <span class="close">&#10005;</span></div>
+                            <div class="col d-flex align-items-center justify-content-center">
+                                <div class="price">&dollar; {{item.celular.precio|intcomma:False}}</div>
+                                <form action="{% url 'eliminar_item_carrito' item.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-danger btn-delete">&#10005;</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="{% static 'mobilemart/img/iphone12.png' %}"></div>
-                            <div class="col">
-                                <div class="row text-muted">Apple</div>
-                                <div class="row">Iphone 12</div>
-                            </div>
-                            <div class="col">
-                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                            </div>
-                            <div class="col">&dollar; 580.000 <span class="close">&#10005;</span></div>
-                        </div>
-                    </div>
+                    {% endfor %}
                     <div class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span
                             class="text-muted">Volver a inicio</span></div>
                 </div>
@@ -60,15 +62,15 @@
                     <hr>
                     <div class="row">
                         <div class="col" style="padding-left:0;">PRODUCTOS</div>
-                        <div class="col text-right">&dollar; 1.960.000</div>
+                        <div class="col text-right">&dollar; {{total_productos|intcomma:False}}</div>
                     </div>
                     <div class="row">
                         <div class="col" style="padding-left:0;">ENVÍO</div>
-                        <div class="col text-right">&dollar; 5.990</div>
+                        <div class="col text-right">&dollar; {{envio|intcomma:False}}</div>
                     </div>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
                         <div class="col" style="margin-top: 2vh; padding-left: 0;"><strong>PRECIO TOTAL</strong></div>
-                        <div class="col text-right" style="margin-top: 2vh;"><strong>&dollar; 1.965.990</strong></div>
+                        <div class="col text-right" style="margin-top: 2vh;"><strong>&dollar; {{total|intcomma:False}}</strong></div>
                     </div>
                     <div class="row">
                         <div class="col" style="padding-left:0;">VALOR DÓLAR</div>

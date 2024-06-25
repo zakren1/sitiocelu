@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Celular, CustomUser
+from .models import Celular, CustomUser, Carrito, ItemCarrito
 from .forms import CelularForm, UpdateCelularForm
 from .forms import CustomUserCreationForm, CustomUserUpdateForm, CustomAuthenticationForm
 from os import remove, path
@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -60,9 +60,64 @@ def iphone(request):
     datos = {"celulares": celulares}
     return render(request, 'mobilemart/iphone.html', datos)
 
-# Vista para la página del Carrito
-def carrito(request):
-    return render(request, 'mobilemart/carrito.html')
+@login_required
+def agregar_al_carrito(request, id):
+    celular = get_object_or_404(Celular, id=id)
+    carrito, created = Carrito.objects.get_or_create(usuario=request.user)
+
+    item, created = ItemCarrito.objects.get_or_create(carrito=carrito, celular=celular)
+    if not created:
+        item.cantidad += 1
+        item.save()
+    
+    messages.success(request, 'Producto agregado al carrito')
+    return redirect('ver_carrito')
+
+@login_required
+def ver_carrito(request):
+    carrito, created = Carrito.objects.get_or_create(usuario=request.user)
+    items = carrito.items.all()
+
+    total_productos = sum(item.celular.precio * item.cantidad for item in items)
+    if total_productos == 0:
+        envio = 0
+    else:
+        envio = 5990
+    total = total_productos + envio
+
+    datos = {
+        'carrito': carrito,
+        'items': items,
+        'total_productos': total_productos,
+        'total': total,
+        'envio': envio
+    }
+    return render(request, 'mobilemart/carrito.html', datos)
+
+@login_required
+def actualizar_carrito(request, id):
+    item = get_object_or_404(ItemCarrito, id=id, carrito__usuario=request.user)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'incrementar':
+            item.cantidad += 1
+            item.save()
+            messages.success(request, 'Cantidad incrementada')
+        elif action == 'decrementar':
+            if item.cantidad > 1:
+                item.cantidad -= 1
+                item.save()
+                messages.success(request, 'Cantidad decrementada')
+            else:
+                messages.error(request, 'La cantidad no puede ser menor a 1')
+    return redirect('ver_carrito')
+
+@login_required
+def eliminar_item_carrito(request, id):
+    item = get_object_or_404(ItemCarrito, id=id, carrito__usuario=request.user)
+    item.delete()
+    messages.success(request, 'Producto eliminado del carrito')
+    return redirect('ver_carrito')
 
 # Vista para la página del Perfil del Usuario
 def perfilusuario(request):
@@ -249,7 +304,7 @@ def detalleusuario(request, pk):
         "usuario":usuario
     }
     
-    return render(request, 'mobilemart/detalleusuario.html',datos)
+    return render(request, 'mobilemart/detalleusuario.html', datos)
 
 # Vista para la página listado pedidos
 @user_passes_test(lambda u: u.is_superuser)
