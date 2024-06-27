@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Celular, CustomUser, Carrito, ItemCarrito
-from .forms import CelularForm, UpdateCelularForm
+from .models import Celular, CustomUser, Carrito, ItemCarrito, Pedido
+from .forms import CelularForm, UpdateCelularForm, ActualizarEstadoPedidoForm
 from .forms import CustomUserCreationForm, CustomUserUpdateForm, CustomAuthenticationForm
 from os import remove, path
 from django.conf import settings
@@ -132,10 +132,6 @@ def perfilusuario(request):
 
     return render(request, 'mobilemart/perfilusuario.html', {'form': form})
 
-# Vista para la página de Pedidos del Usuario
-def pedidosuser(request):
-    return render(request, 'mobilemart/pedidosuser.html')
-
 # Vista para la página de Inicio de Sesión
 #def iniciosesion(request):
 #    return render(request, 'registration/login.html')
@@ -165,9 +161,16 @@ def recuperar_contrasena(request):
 def registro_usuario(request):
     return render(request, 'registration/registro.html')
 
-# Vista para la página detalle pedido usuario
-def detalle_pedido_usuario(request):
-    return render(request, 'mobilemart/detallepedidouser.html')
+@login_required
+def pedidosuser(request):
+    pedidos = Pedido.objects.filter(usuario=request.user)
+    return render(request, 'mobilemart/pedidosuser.html', {'pedidos': pedidos})
+
+
+@login_required
+def detalle_pedido_usuario(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user)
+    return render(request, 'mobilemart/detallepedidouser.html', {'pedido': pedido})
 
 ##### VISTAS DE ADMINISTRADOR #####
 
@@ -306,15 +309,22 @@ def detalleusuario(request, pk):
     
     return render(request, 'mobilemart/detalleusuario.html', datos)
 
-# Vista para la página listado pedidos
 @user_passes_test(lambda u: u.is_superuser)
 def listadopedidos(request):
-    return render(request, 'mobilemart/listadopedidos.html')
+    pedidos = Pedido.objects.all()
+    return render(request, 'mobilemart/listadopedidos.html', {'pedidos': pedidos})
 
-# Vista para la página detalle pedido
 @user_passes_test(lambda u: u.is_superuser)
-def detallepedido(request):
-    return render(request, 'mobilemart/detallepedido.html')
+def detallepedido(request, pedido_id):
+    pedido = get_object_or_404(Pedido, id=pedido_id)
+    if request.method == 'POST':
+        form = ActualizarEstadoPedidoForm(request.POST, instance=pedido)
+        if form.is_valid():
+            form.save()
+            return redirect('detallepedido', pedido_id=pedido.id)
+    else:
+        form = ActualizarEstadoPedidoForm(instance=pedido)
+    return render(request, 'mobilemart/detallepedido.html', {'pedido': pedido, 'form': form})
 
 
 

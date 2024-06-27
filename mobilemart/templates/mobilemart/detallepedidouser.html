@@ -3,92 +3,71 @@
 
 {% block title %}Detalle pedido usuario{% endblock %}
 
-    {% block contenido %}
-    <section>
-        <div class="container">
-            <h1 class="border-bottom">Resumen de Pedido</h1>
-            <div class="row mt-4">
-
-                <!-- Detalles del pedido -->
-                <div class="col-12 col-md-8">
-                    <div class="order-details mt-4">
-                        <h2 class="border-bottom">Detalles del Pedido</h2>
-
-                        <!-- Datos del pedido -->
-                        <div class="order-info mt-3">
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <strong>Número de Pedido:</strong>
-                                </div>
-                                <div class="col-md-9">
-                                    #1
-                                </div>
+{% block contenido %}
+<section>
+    <div class="container">
+        <h1 class="border-bottom">Resumen de Pedido</h1>
+        <div class="row mt-4">
+            <div class="col-12 col-md-8">
+                <div class="order-details mt-4">
+                    <h2 class="border-bottom">Detalles del Pedido</h2>
+                    <div class="order-info mt-3">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Número de Pedido:</strong>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <strong>Usuario:</strong>
-                                </div>
-                                <div class="col-md-9">
-                                    CrisMj
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <strong>Correo Electronico:</strong>
-                                </div>
-                                <div class="col-md-9">
-                                    crismj@gmail.com
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <strong>Estado:</strong>
-                                </div>
-                                <div class="col-md-9">
-                                    Entregado
-                                </div>
+                            <div class="col-md-9">
+                                #{{ pedido.id }}
                             </div>
                         </div>
-                        <!-- Datos del pedido -->
-
-                        <!-- Productos del pedido -->
-                        <div class="order-products mt-4">
-                            <h3>Productos</h3>
-
-                            <!-- Producto 1 -->
-                            <div class="product row mt-3">
-                                <div class="col-md-3">
-                                    <img src="{% static 'mobilemart/img/iphone15.jpg' %}" class="w-100"
-                                        alt="Iphone 15" />
-                                </div>
-                                <div class="col-md-9">
-                                    <h4>Iphone 15</h4>
-                                    <p><strong>Color:</strong> Negro</p>
-                                    <p><strong>Precio:</strong> $930.000</p>
-                                </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Usuario:</strong>
                             </div>
-                            <!-- Producto 1 -->
-
-                            <!-- Total del pedido -->
-                            <div class="order-total mt-4">
-                                <h3>Total del Pedido</h3>
-                                <p><strong>Total:</strong> $930.000</p>
+                            <div class="col-md-9">
+                                {{ pedido.usuario.username }}
                             </div>
-                            <!-- Total del pedido -->
-
-                            <!-- Botón atras -->
-                            <div class="mt-4 mb-3">
-                                <a href="{% url 'pedidosuser' %}">
-                                    <button class="btn btn-primary">Volver</button>
-                                </a>
-                            </div>
-                            <!-- Botón atrás -->
-
                         </div>
-                        <!-- Productos del pedido -->
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Correo Electronico:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                {{ pedido.usuario.email }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <strong>Estado:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                {{ pedido.estado }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-products mt-4">
+                        <h3>Productos</h3>
+                        {% for detalle in pedido.detalles.all %}
+                        <div class="product row mt-3">
+                            <div class="col-md-9">
+                                <h4>{{ detalle.celular.modelo }}</h4>
+                                <p><strong>Precio:</strong> ${{ detalle.precio }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="order-total mt-4">
+                        <h3>Total del Pedido</h3>
+                        <p><strong>Total:</strong> ${{ pedido.total }}</p>
+                    </div>
+                    <div class="mt-4 mb-3">
+                        <a href="{% url 'pedidosuser' %}">
+                            <button class="btn btn-primary">Volver</button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    {% endblock contenido %}
+    </div>
+</section>
+{% endblock contenido %}

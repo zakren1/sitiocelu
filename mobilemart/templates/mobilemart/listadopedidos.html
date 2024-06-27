@@ -1,56 +1,31 @@
 {% extends 'mobilemart/baseadmin.html' %}
 {% load static %}
 
+{% block title %}Listado pedidos{% endblock %}
 
-    {% block title %}Listado pedidos{% endblock %}
-
-    {% block links %}
-    {% endblock links %}
-    
-
-
-
-
-
-
-    {% block contenido %}
-    <section>
-        <div class="container mt-3 mb-5">
-            <h2 class="border-bottom">Listado de Pedidos</h2>
-            <div class="row">
-                <!-- Primer pedido -->
-                <div class="col-md-6">
-                    <div class="card border-primary mb-3">
-                        <div class="card-header bg-dark text-white">
-                            <h4 class="mb-0">Pedido #1</h4>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Estado: Entregado</h5>
-                            <p class="card-text">
-                                <strong>Usuario:</strong> CrisMj<br>
-                                <strong>Producto:</strong> iPhone 15
-                            </p>
-                            <a href="{% url 'detallepedido' %}" class="btn btn-dark">Ver Detalles</a>
-                        </div>
+{% block contenido %}
+<section>
+    <div class="container mt-3 mb-5">
+        <h2 class="border-bottom">Listado de Pedidos</h2>
+        <div class="row">
+            {% for pedido in pedidos %}
+            <div class="col-md-6">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Pedido #{{ pedido.id }}</h4>
                     </div>
-                </div>
-                <!-- Segundo pedido -->
-                <div class="col-md-6">
-                    <div class="card border-primary mb-3">
-                        <div class="card-header bg-dark text-white">
-                            <h4 class="mb-0">Pedido #2</h4>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Estado: En proceso</h5>
-                            <p class="card-text">
-                                <strong>Usuario:</strong> Jereklein<br>
-                                <strong>Producto:</strong> Samsung Galaxy S21
-                            </p>
-                            <a href="{% url 'detallepedido' %}" class="btn btn-dark">Ver Detalles</a>
-                        </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Estado: {{ pedido.estado }}</h5>
+                        <p class="card-text">
+                            <strong>Usuario:</strong> {{ pedido.usuario.username }}<br>
+                            <strong>Producto:</strong> {% for detalle in pedido.detalles.all %}{{ detalle.celular.modelo }} {% endfor %}
+                        </p>
+                        <a href="{% url 'detallepedido' pedido.id %}" class="btn btn-dark">Ver Detalles</a>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-    </section>
-    {% endblock contenido %}
+    </div>
+</section>
+{% endblock contenido %}

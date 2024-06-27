@@ -87,3 +87,27 @@ class ItemCarrito(models.Model):
 
     def subtotal(self):
         return self.celular.precio * self.cantidad
+    
+class Pedido(models.Model):
+    ESTADO_PEDIDO = [
+    ('pendiente', 'Pendiente'),
+    ('enviado', 'Enviado'),
+    ('entregado', 'Entregado'),
+
+]
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    fecha_pedido = models.DateTimeField(auto_now_add=True)
+    total = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    estado = models.CharField(max_length=20, choices=ESTADO_PEDIDO, default='pendiente')
+
+    def __str__(self):
+        return f"Pedido {self.id} - {self.usuario.email}"
+
+class DetallePedido(models.Model):
+    pedido = models.ForeignKey(Pedido, related_name='detalles', on_delete=models.CASCADE)
+    celular = models.ForeignKey(Celular, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    precio = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+
+    def __str__(self):
+        return f"Detalle del Pedido {self.pedido.id} - {self.celular.modelo}"

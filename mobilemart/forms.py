@@ -1,5 +1,5 @@
 from django import forms
-from .models import Celular, CustomUser
+from .models import Celular, CustomUser, Pedido
 from .enumeraciones import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 
@@ -43,5 +43,10 @@ class UpdateCelularForm(forms.ModelForm):
     class Meta:
         model = Celular
         fields = ['modelo','marca','precio','especificaciones','foto']
+        
+class ActualizarEstadoPedidoForm(forms.ModelForm):
+    class Meta:
+        model = Pedido
+        fields = ['estado']
 
     
