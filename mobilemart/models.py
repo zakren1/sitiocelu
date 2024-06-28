@@ -89,16 +89,10 @@ class ItemCarrito(models.Model):
         return self.celular.precio * self.cantidad
     
 class Pedido(models.Model):
-    ESTADO_PEDIDO = [
-    ('pendiente', 'Pendiente'),
-    ('enviado', 'Enviado'),
-    ('entregado', 'Entregado'),
-
-]
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     fecha_pedido = models.DateTimeField(auto_now_add=True)
     total = models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    estado = models.CharField(max_length=20, choices=ESTADO_PEDIDO, default='pendiente')
+    estado = models.CharField(max_length=20, choices=ESTADO_PEDIDO, default='Pendiente')
 
     def __str__(self):
         return f"Pedido {self.id} - {self.usuario.email}"

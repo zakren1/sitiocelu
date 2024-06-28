@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Celular, CustomUser
+from .models import Celular, CustomUser, Pedido
 
 class AdmCustomUser(UserAdmin):
     model = CustomUser
@@ -29,6 +29,11 @@ class AdmCelular(admin.ModelAdmin):
     list_editable=['precio', 'foto']
     list_filter=['marca']
 
+class AdmPedido(admin.ModelAdmin):
+    list_display = ['id', 'usuario', 'total', 'estado', 'fecha_pedido']
+    list_filter = ['estado', 'fecha_pedido']
+    search_fields = ['usuario__email', 'id']
+    ordering = ['fecha_pedido']
 
 
 
@@ -36,4 +41,4 @@ class AdmCelular(admin.ModelAdmin):
 #admin.site.register(Usuario, AdmUsuario)
 admin.site.register(Celular, AdmCelular)
 admin.site.register(CustomUser, AdmCustomUser)
-
+admin.site.register(Pedido, AdmPedido)

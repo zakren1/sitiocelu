@@ -1,12 +1,13 @@
 {% extends 'mobilemart/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}Detalle pedido usuario{% endblock %}
 
 {% block contenido %}
 <section>
     <div class="container">
-        <h1 class="border-bottom">Resumen de Pedido</h1>
+        <h1 class="border-bottom">Resumen del Pedido</h1>
         <div class="row mt-4">
             <div class="col-12 col-md-8">
                 <div class="order-details mt-4">
@@ -38,6 +39,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-3">
+                                <strong>Fecha del pedido:</strong>
+                            </div>
+                            <div class="col-md-9">
+                                {{ pedido.fecha_pedido }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
                                 <strong>Estado:</strong>
                             </div>
                             <div class="col-md-9">
@@ -51,14 +60,14 @@
                         <div class="product row mt-3">
                             <div class="col-md-9">
                                 <h4>{{ detalle.celular.modelo }}</h4>
-                                <p><strong>Precio:</strong> ${{ detalle.precio }}</p>
+                                <p><strong>Precio:</strong> ${{ detalle.precio|intcomma:False }}</p>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                     <div class="order-total mt-4">
                         <h3>Total del Pedido</h3>
-                        <p><strong>Total:</strong> ${{ pedido.total }}</p>
+                        <p><strong>Total:</strong> ${{ pedido.total|intcomma:False }}</p>
                     </div>
                     <div class="mt-4 mb-3">
                         <a href="{% url 'pedidosuser' %}">

@@ -43,7 +43,7 @@
                                 </form>
                             </div>
                             <div class="col d-flex align-items-center justify-content-center">
-                                <div class="price">&dollar; {{item.celular.precio|intcomma:False}}</div>
+                                <div class="price">&dollar; {{total_productos|intcomma:False}}</div>
                                 <form action="{% url 'eliminar_item_carrito' item.id %}" method="post">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-sm btn-danger btn-delete">&#10005;</button>
@@ -83,7 +83,10 @@
                         </div>
 
                     </div>
-                    <a href="{% url 'detalle_pedido_usuario' %}"><button class="btn">PAGAR</button></a>
+                    <form method="post" action="{% url 'confirmar_carrito' %}" style="display:inline;" id="confirmar-form">
+                        {% csrf_token %}
+                        <button type="button" class="btn" onclick="confirmarCarrito()">PAGAR</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -91,6 +94,24 @@
     </div>
 
     <!--FIN CARRITO-->
+
+    <script>
+        function confirmarCarrito(){
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Serás redirigido a WebPay para proceder con el pago.",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '137fd9',
+                confirmButtonText: 'Sí, ir a pagar',
+                cancelButtonText: 'Cancelar'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    document.getElementById('confirmar-form').submit();
+                }
+            })
+        }
+    </script>
 
     <script src="{% static 'mobilemart/js/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'mobilemart/js/scriptcarrito.js' %}"></script>

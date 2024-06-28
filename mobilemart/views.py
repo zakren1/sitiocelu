@@ -119,7 +119,43 @@ def eliminar_item_carrito(request, id):
     messages.success(request, 'Producto eliminado del carrito')
     return redirect('ver_carrito')
 
+@login_required
+def confirmar_carrito(request):
+    carrito = Carrito.objects.get(usuario=request.user)
+    items = ItemCarrito.objects.all()
+    total_productos = sum(item.celular.precio * item.cantidad for item in items)
+    if total_productos == 0:
+        envio = 0
+    else:
+        envio = 5990
+    total = total_productos + envio
+
+    if request.method == 'POST':
+            # Crear el pedido
+            usuario = request.user
+            pedido = Pedido(usuario=usuario, total=total)
+            pedido.save()
+
+            # Agregar los productos al pedido
+            for item in items:
+                detalle_pedido = pedido.detalles.create(
+                    celular=item.celular,
+                    cantidad=item.cantidad,
+                    precio=item.celular.precio * item.cantidad
+                )
+                detalle_pedido.save()
+
+            # Vaciar el carrito
+            ItemCarrito.objects.all().delete()
+
+            messages.success(request, '¡Pago exitoso!')
+
+            return redirect('detalle_pedido_usuario', id=pedido.id)
+
+    return render(request, 'mobilemart/confirmar_carrito.html', {'items': items, 'total': total})
+
 # Vista para la página del Perfil del Usuario
+@login_required
 def perfilusuario(request):
     if request.method == "POST":
         form = CustomUserUpdateForm(data=request.POST, instance=request.user)
@@ -168,8 +204,8 @@ def pedidosuser(request):
 
 
 @login_required
-def detalle_pedido_usuario(request, pedido_id):
-    pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user)
+def detalle_pedido_usuario(request, id):
+    pedido = get_object_or_404(Pedido, id=id, usuario=request.user)
     return render(request, 'mobilemart/detallepedidouser.html', {'pedido': pedido})
 
 ##### VISTAS DE ADMINISTRADOR #####
@@ -315,13 +351,13 @@ def listadopedidos(request):
     return render(request, 'mobilemart/listadopedidos.html', {'pedidos': pedidos})
 
 @user_passes_test(lambda u: u.is_superuser)
-def detallepedido(request, pedido_id):
-    pedido = get_object_or_404(Pedido, id=pedido_id)
+def detallepedido(request, id):
+    pedido = get_object_or_404(Pedido, id=id)
     if request.method == 'POST':
         form = ActualizarEstadoPedidoForm(request.POST, instance=pedido)
         if form.is_valid():
             form.save()
-            return redirect('detallepedido', pedido_id=pedido.id)
+            return redirect('detallepedido', id=pedido.id)
     else:
         form = ActualizarEstadoPedidoForm(instance=pedido)
     return render(request, 'mobilemart/detallepedido.html', {'pedido': pedido, 'form': form})
