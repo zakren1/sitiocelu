@@ -1,8 +1,10 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator, RegexValidator
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from .enumeraciones import *
+from django.core.exceptions import ValidationError
+import re
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
@@ -21,15 +23,24 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
+def validar_rut(rut):
+    if not re.match(r'^\d{7,8}-[\dkK]$', rut):
+        raise ValidationError('El formato del RUT no es válido.')
+
+def validar_telefono(telefono):
+    if not re.match(r'^\d{9}$', telefono):
+        raise ValidationError('El número de teléfono debe contener exactamente 9 dígitos.')
+
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    rut=models.CharField(max_length=10)
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
+    rut=models.CharField(max_length=12, validators=[validar_rut])
+    nombre = models.CharField(max_length=50, validators=[MinLengthValidator(3, message=("El nombre debe tener al menos 3 caracteres"))])
+    apellido = models.CharField(max_length=50,  validators=[MinLengthValidator(3, message=("El apellido debe tener al menos 3 caracteres"))])
     email = models.EmailField(unique=True)
-    username=models.CharField("Nombre de usuario", max_length=50)
+    username=models.CharField("Nombre de usuario", max_length=50, validators=[MinLengthValidator(3, message=("El nombre de usuario debe tener al menos 3 caracteres"))])
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    telefono = models.CharField(verbose_name="Teléfono", max_length=20)  # Nuevo campo
+    telefono = models.CharField(verbose_name="Teléfono", max_length=10, validators=[RegexValidator(r'^\d{9}$', 'El teléfono debe contener exactamente 9 números.')])
     region = models.CharField(verbose_name="Región", max_length=100)  # Nuevo campo
     comuna = models.CharField(max_length=100)  # Nuevo campo
     direccion = models.CharField(verbose_name="Dirección",max_length=255)  # Nuevo campo

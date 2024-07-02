@@ -14,7 +14,10 @@ class CustomUserUpdateForm(UserChangeForm):
     
     class Meta(UserChangeForm.Meta):
         model = CustomUser
-        fields = ('email', 'rut', 'nombre', 'apellido', 'username', 'telefono', 'region', 'comuna', 'direccion', 'num_departamento')
+        fields = ('email', 'rut', 'nombre', 'apellido', 'username', 'telefono', 'region', 'comuna', 'direccion', 'num_departamento',)
+        widgets = {
+            'rut': forms.TextInput(attrs={'readonly': True}),
+        }
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.EmailField(label='Email')
