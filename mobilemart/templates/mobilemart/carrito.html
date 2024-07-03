@@ -7,112 +7,118 @@
 {% block links %}
     <link rel="stylesheet" href="{% static 'mobilemart/css/Carrito.css' %}">
 {% endblock links %}
-    
 
-    {% block contenido %}
+{% block contenido %}
 
-    <!--CARRITO-->
-    <div class="carrito-section">
-        <div class="card mt-4 mb-4">
-            <div class="row">
-                <div class="col-md-8 cart">
-                    <div class="title">
-                        <div class="row">
-                            <div class="col">
-                                <h4><b>Carrito de compras</b></h4>
-                            </div>
-                            <div class="col align-self-center text-right text-muted" style="text-align: end;">
-                                {{ carrito.items.count }} producto(s)</div>
+<!--CARRITO-->
+<div class="carrito-section">
+    <div class="card mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Carrito de compras</b></h4>
+                        </div>
+                        <div class="col align-self-center text-right text-muted" style="text-align: end;">
+                            {{ items.count }} producto(s)
                         </div>
                     </div>
-
-                    {% for item in items %}
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="{{item.celular.foto.url}}" alt=""></div>
-                            <div class="col">
-                                <div class="row text-muted">{{item.celular.marca}}</div>
-                                <div class="row">{{item.celular.modelo}}</div>
-                            </div>
-                            <div class="col d-flex align-items-center justify-content-center">
-                                <form action="{% url 'actualizar_carrito' item.id %}" method="post" class="d-flex align-items-center">
-                                    {% csrf_token %}
-                                    <button type="submit" name="action" value="decrementar" class="btn btn-sm btn-secondary btn-quantity">-</button>
-                                    <span class="mx-2">{{ item.cantidad }}</span>
-                                    <button type="submit" name="action" value="incrementar" class="btn btn-sm btn-secondary btn-quantity">+</button>
-                                </form>
-                            </div>
-                            <div class="col d-flex align-items-center justify-content-center">
-                                <div class="price">&dollar; {{total_productos|intcomma:False}}</div>
-                                <form action="{% url 'eliminar_item_carrito' item.id %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-sm btn-danger btn-delete">&#10005;</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span
-                            class="text-muted">Volver a inicio</span></div>
                 </div>
-                <div class="col-md-4 summary">
-                    <div>
-                        <h5><b>Resumen</b></h5>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">PRODUCTOS</div>
-                        <div class="col text-right">&dollar; {{total_productos|intcomma:False}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">ENVÍO</div>
-                        <div class="col text-right">&dollar; {{envio|intcomma:False}}</div>
-                    </div>
-                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
-                        <div class="col" style="margin-top: 2vh; padding-left: 0;"><strong>PRECIO TOTAL</strong></div>
-                        <div class="col text-right" style="margin-top: 2vh;"><strong>&dollar; {{total|intcomma:False}}</strong></div>
-                    </div>
-                    <div class="row">
-                        <div class="col" style="padding-left:0;">VALOR DÓLAR</div>
-                        <div class="col text-right">
-                            <div class="spinner">
-                                <span class="spinner-grow spinner-grow-sm"></span>
-                                Cargando..
-                            </div>
-                            <div id="dolar"></div>
-                        </div>
 
+                {% if not items %}
+                <div class="row mt-4 mb-4">
+                    <div class="col text-center">
+                        <h5>No hay ningún producto en su carrito</h5>
+                        <a href="{% url 'index' %}" class="btn btn-primary mt-3">Volver a inicio</a>
                     </div>
-                    <form method="post" action="{% url 'confirmar_carrito' %}" style="display:inline;" id="confirmar-form">
-                        {% csrf_token %}
-                        <button type="button" class="btn" onclick="confirmarCarrito()">PAGAR</button>
-                    </form>
                 </div>
+                {% else %}
+                {% for item in items %}
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="{{item.celular.foto.url}}" alt=""></div>
+                        <div class="col">
+                            <div class="row text-muted">{{item.celular.marca}}</div>
+                            <div class="row">{{item.celular.modelo}}</div>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <form action="{% url 'actualizar_carrito' item.id %}" method="post" class="d-flex align-items-center">
+                                {% csrf_token %}
+                                <button type="submit" name="action" value="decrementar" class="btn btn-sm btn-secondary btn-quantity">-</button>
+                                <span class="mx-2">{{ item.cantidad }}</span>
+                                <button type="submit" name="action" value="incrementar" class="btn btn-sm btn-secondary btn-quantity">+</button>
+                            </form>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <div class="price">&dollar; {{total_productos|intcomma:False}}</div>
+                            <form action="{% url 'eliminar_item_carrito' item.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger btn-delete">&#10005;</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="back-to-shop"><a href="{% url 'index' %}">&leftarrow;</a><span class="text-muted">Volver a inicio</span></div>
             </div>
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Resumen</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">PRODUCTOS</div>
+                    <div class="col text-right">&dollar; {{ total_productos|intcomma:False }}</div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">ENVÍO</div>
+                    <div class="col text-right">&dollar; {{ envio|intcomma:False }}</div>
+                </div>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1);">
+                    <div class="col" style="margin-top: 2vh; padding-left: 0;"><strong>PRECIO TOTAL</strong></div>
+                    <div class="col text-right" style="margin-top: 2vh;"><strong>&dollar; {{ total|intcomma:False }}</strong></div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">VALOR DÓLAR</div>
+                    <div class="col text-right">
+                        <div class="spinner">
+                            <span class="spinner-grow spinner-grow-sm"></span>
+                            Cargando..
+                        </div>
+                        <div id="dolar"></div>
+                    </div>
+                </div>
+                <form method="post" action="{% url 'confirmar_carrito' %}" style="display:inline;" id="confirmar-form">
+                    {% csrf_token %}
+                    <button type="button" class="btn" onclick="confirmarCarrito()">PAGAR</button>
+                </form>
+            </div>
+            {% endif %}
         </div>
-
     </div>
+</div>
 
-    <!--FIN CARRITO-->
+<!--FIN CARRITO-->
 
-    <script>
-        function confirmarCarrito(){
-            Swal.fire({
-                title: '¿Estás seguro?',
-                text: "Serás redirigido a WebPay para proceder con el pago.",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '137fd9',
-                confirmButtonText: 'Sí, ir a pagar',
-                cancelButtonText: 'Cancelar'
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    document.getElementById('confirmar-form').submit();
-                }
-            })
-        }
-    </script>
+<script>
+    function confirmarCarrito(){
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Serás redirigido a WebPay para proceder con el pago.",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#137fd9',
+            confirmButtonText: 'Sí, ir a pagar',
+            cancelButtonText: 'Cancelar'
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                document.getElementById('confirmar-form').submit();
+            }
+        })
+    }
+</script>
 
-    <script src="{% static 'mobilemart/js/jquery-3.7.1.min.js' %}"></script>
-    <script src="{% static 'mobilemart/js/scriptcarrito.js' %}"></script>
-    {% endblock contenido %}
+<script src="{% static 'mobilemart/js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'mobilemart/js/scriptcarrito.js' %}"></script>
+{% endblock contenido %}
