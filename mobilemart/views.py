@@ -306,10 +306,14 @@ def crearusuario(request):
 def eliminar_usuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
-        usuario.delete()
-        messages.success(request, 'Usuario eliminado correctamente.')
-        return redirect('listadousuarios')
-    
+        try:
+            usuario.delete()
+            messages.success(request, 'Usuario eliminado correctamente.')
+            return redirect('listadousuarios')
+        except Exception as ex:
+            messages.error(request, 'No se puede eliminar')
+            return redirect('listadousuarios')
+        
     datos={
         "usuario":usuario
     }

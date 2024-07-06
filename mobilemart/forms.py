@@ -14,7 +14,7 @@ class CustomUserUpdateForm(UserChangeForm):
     
     class Meta(UserChangeForm.Meta):
         model = CustomUser
-        fields = ('email', 'rut', 'nombre', 'apellido', 'username', 'telefono', 'region', 'comuna', 'direccion', 'num_departamento',)
+        fields = ('email', 'rut', 'nombre', 'apellido', 'username', 'is_active', 'telefono', 'region', 'comuna', 'direccion', 'num_departamento',)
         widgets = {
             'rut': forms.TextInput(attrs={'readonly': True}),
         }
